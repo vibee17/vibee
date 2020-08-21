@@ -22,9 +22,9 @@ app.post('/', (req, res)=>{
     }
 
     function cek_kebutuhan(agent){
-        const umur1 = req.body.queryResult.parameters['umur-user']
-        const status = agent.parameters.status-pernikahan
-        const umur = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.umur-user ? req.body.queryResult.parameters.umur-user : 'Tidak diketahui';
+        const umur1 = req.body.queryResult.parameters['umur_user']
+        const status = agent.parameters.status_pernikahan
+        const umur = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.umur_user ? req.body.queryResult.parameters.umur_user : 'Tidak diketahui';
 
         agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
         console.log(`umur = ${umur} dan status = ${status} ${umur1}` )   
