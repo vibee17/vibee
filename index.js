@@ -35,7 +35,7 @@ app.post('/', (req, res)=>{
             text: 'Yuk download WELMA, dibuat untuk kamu loh :)',
             buttonText: 'Klik di sini',
             buttonUrl: 'https://www.bca.co.id/welma'
-          })
+          }))
 
         console.log(`umur = ${umur} dan status = ${status}` )   
     }
