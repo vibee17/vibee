@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 	res.status(200).send('Server is working now.')
 })
 
+
 app.post('/', (req, res)=>{
     const agent = new dfff.WebhookClient({
         request : req,
@@ -20,9 +21,17 @@ app.post('/', (req, res)=>{
         agent.add("Sending response from Webhook server")
     }
 
+    function cek_kebutuhan(agent){
+        const umur = agent.parameters.umur_user
+        const status = agent.parameters.status_pernikahan
+
+        agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
+    }
+
     var intentMap = new Map()
 
     intentMap.set('webhookDemo', demo)
+    intentMap.set('siklus.kebutuhan.info.cek', cek_kebutuhan)
 
     agent.handleRequest(intentMap)
 })
