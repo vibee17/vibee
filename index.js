@@ -44,7 +44,7 @@ app.post('/', (req, res)=>{
         agent.add("Kamu bisa mulai dari menabung dulu, baik di bank atau di celengan pribadi. Pastikan kamu mulai menabung, berapapun nominalnya.")
         agent.add("Selain itu, mulailah mencatat setiap pengeluaranmu, baik jajan gorengan di sekolah atau di kampus, agar kebiasaan mencatat bisa terbentuk.")
         agent.add("Kamu bisa pakai aplikasi seperti Money Lover atau Money Manager untuk memudahkan kamu.")
-        agent.add(new dfff.Payload(platform.UNSPECIFIED, payloadCard), {sendAsMessage: true, rawPayload: true})
+        agent.add(new dfff.Payload(agent.UNSPECIFIED, payloadCard), {sendAsMessage: true, rawPayload: true})
             
         console.log(`umur = ${umur} dan status = ${status}` )   
     }
