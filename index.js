@@ -25,7 +25,8 @@ app.post('/', (req, res)=>{
         const umur = req.body.queryResult.parameters['umur_user']
         const status = agent.parameters.status_pernikahan
 
-        agent.add("Umur kamu adalah " + ${JSON.stringify(umur)} + " dan status kamu adalah " + ${JSON.stringify(status)} + ".")
+        agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
+        console.log(`umur = ${umur}`)   
     }
 
     var intentMap = new Map()
