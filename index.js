@@ -27,12 +27,20 @@ app.post('/', (req, res)=>{
         const status = agent.parameters.status_pernikahan
 
         if (umur <= 21 && status == "single"){
-        agent.add("Kamu bisa mulai dari menabung dulu, baik di bank atau di celengan pribadi. Pastikan kamu mulai menabung, berapapun nominalnya.")
-        agent.add("Selain itu, mulailah mencatat setiap pengeluaranmu, baik jajan gorengan di sekolah atau di kampus, agar kebiasaan mencatat bisa terbentuk.")
-        agent.add("Kamu bisa pakai aplikasi seperti Money Lover atau Money Manager untuk memudahkan kamu.")
+        agent.add("Untuk saat ini, kamu bisa mulai dari menabung dulu. Ga masalah berapapun nominalnya. Akan lebih baik juga apabila ditabung di bank, dibandingkan disimpan secara tunai. Selain lebih aman, kamu juga bisa menginvestasikannya nanti.")
+        agent.add("Selain itu, mulailah mencatat setiap pengeluaranmu, seperti jajan gorengan, beli pulsa, dan lain-lain agar kebiasaan mencatat bisa terbentuk. Ini akan sangat berguna seiring kamu semakin pandai mengatur keuangan.")
+        agent.add("Sambilan kamu juga bisa menambah pengetahuanmu mengenai rencana keuangan.")
         agent.add(new dfff.Card({
-            title: 'hello',
-            text: 'test',
+            title: 'hello1',
+            text: 'test1',
+            imageUrl: 'https://goo.gl/aeDtrS',
+            buttonText: 'Details',
+            buttonUrl: 'https://assistant.google.com/'
+        
+        }))
+        agent.add(new dfff.Card({
+            title: 'hello2',
+            text: 'test2',
             imageUrl: 'https://goo.gl/aeDtrS',
             buttonText: 'Details',
             buttonUrl: 'https://assistant.google.com/'
