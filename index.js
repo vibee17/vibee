@@ -23,7 +23,7 @@ app.post('/', (req, res)=>{
 
     function cek_kebutuhan(agent){
         const umur1 = req.body.queryResult.parameters['umur-user']
-        const status = agent.parameters.status_pernikahan
+        const status = agent.parameters.status-pernikahan
         const umur = req.body.result && req.body.result.parameters && req.body.result.parameters.umur-user ? req.body.result.parameters.umur-user : 'Tidak diketahui';
 
         agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
