@@ -25,7 +25,18 @@ app.post('/', (req, res)=>{
         const umur = req.body.queryResult.parameters["umur_user"]
         const status = agent.parameters.status_pernikahan
 
-        agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
+        if (umur < 21 && status == "single")
+        agent.add("Kamu bisa mulai dari menabung dulu, baik di bank atau di celengan pribadi. Pastikan kamu mulai menabung, berapapun nominalnya.")
+        agent.add("Selain itu, mulailah mencatat setiap pengeluaranmu, baik jajan gorengan di sekolah atau di kampus, agar kebiasaan mencatat bisa terbentuk.")
+        agent.add("Kamu bisa pakai aplikasi seperti Money Lover atau Money Manager untuk memudahkan kamu.")
+        agent.add(new Card({
+            title: 'Aplikasi WELMA',
+            imageUrl: 'https://i.ibb.co/H4dWq1H/welma1.jpg',
+            text: 'Yuk download WELMA, dibuat untuk kamu loh :)',
+            buttonText: 'Klik di sini',
+            buttonUrl: 'https://www.bca.co.id/welma'
+          })
+
         console.log(`umur = ${umur} dan status = ${status}` )   
     }
 
