@@ -22,12 +22,11 @@ app.post('/', (req, res)=>{
     }
 
     function cek_kebutuhan(agent){
-        const umur1 = req.body.queryResult.parameters['umur_user']
-        const status = agent.parameters.status_pernikahan
-        const umur = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.umur_user ? req.body.queryResult.parameters.umur_user : 'Tidak diketahui';
+        const umur = req.body.queryResult.parameters['umur_user']
+        const status = agent.parameters.status_pernikahan.original
 
         agent.add("Umur kamu adalah " + umur + " dan status kamu adalah " + status + ".")
-        console.log(`umur = ${umur} dan status = ${status} ${umur1}` )   
+        console.log(`umur = ${umur} dan status = ${status}` )   
     }
 
     var intentMap = new Map()
