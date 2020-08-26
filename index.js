@@ -21,7 +21,7 @@ app.post('/', (req, res)=>{
         agent.add("Sending response from Webhook server")
     }
 
-    function rasio_keuangan(agent){
+    function rasio_likuiditas(agent){
         const status = agent.parameters.status_pernikahan
         const dana_tunai = agent.parameters.dana_tunai
         const pengeluaran = agent.parameters.pengeluaran
@@ -38,12 +38,15 @@ app.post('/', (req, res)=>{
         const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('de-DE')
 
         if (status == "single" && rasio_likuiditas < 4){
-          agent.add("Semangat! Kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ${dana_darurat_single_bulat}.")
+          agent.add('Semangat! Kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ${dana_darurat_single_bulat}.')
+        } else if (status == "single" && rasio_likuiditas >= 4){
+          agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ${dana_darurat_single_bulat}.')
         }
-        
 
         
 
+        
+        console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio likuiditas = ${rasio_likuiditas}, dana darurat single = ${dana_darurat_single} / ${dana_darurat_single_bulat} dan status = ${status}` )  
     }
 
     function cek_kebutuhan(agent){
