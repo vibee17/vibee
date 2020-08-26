@@ -21,6 +21,31 @@ app.post('/', (req, res)=>{
         agent.add("Sending response from Webhook server")
     }
 
+    function rasio_keuangan(agent){
+        const status = agent.parameters.status_pernikahan
+        const dana_tunai = agent.parameters.dana_tunai
+        const pengeluaran = agent.parameters.pengeluaran
+
+        const rasio_likuiditas = dana_tunai / pengeluaran
+        const dana_darurat_single = pengeluaran * 4
+        const dana_darurat_merid = pengeluaran  * 6
+        const dana_darurat_merid_1_anak = pengeluaran * 9
+        const dana_darurat_merid_2_anak = pengeluaran * 12
+        
+        const dana_darurat_single_bulat = dana_darurat_single.toLocaleString('de-DE')
+        const dana_darurat_merid_bulat = dana_darurat_merid.toLocaleString('de-DE')
+        const dana_darurat_merid_1_anak_bulat = dana_darurat_merid_1_anak.toLocaleString('de-DE')
+        const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('de-DE')
+
+        if (status == "single" && rasio_likuiditas < 4){
+          agent.add("Semangat! Kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ${dana_darurat_single_bulat}.")
+        }
+        
+
+        
+
+    }
+
     function cek_kebutuhan(agent){
         const umur = req.body.queryResult.parameters["umur_user"]
         const status = agent.parameters.status_pernikahan
@@ -129,6 +154,7 @@ app.post('/', (req, res)=>{
 
     intentMap.set('webhookDemo', demo)
     intentMap.set('siklus.kebutuhan.info.cek', cek_kebutuhan)
+    intentMap.set('rasio.likuiditas.hitung.dana', rasio_likuiditas)
 
     agent.handleRequest(intentMap)
 })
