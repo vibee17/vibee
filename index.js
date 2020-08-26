@@ -38,13 +38,13 @@ app.post('/', (req, res)=>{
         const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('id-ID')
 
         if (status == "single" && rasio_likuiditas < 4){
-          agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + {dana_darurat_single_bulat} + '.')
-          agent.add('Rasio likuiditas kamu hanya ' + {rasio_likuiditas} + ', sementara rasio idealnya adalah 4.')
+          agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + JSON.stringify(dana_darurat_single_bulat) + '.')
+          agent.add('Rasio likuiditas kamu hanya ' + JSON.stringify(rasio_likuiditas) + ', sementara rasio idealnya adalah 4.')
           agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
           agent.add('Semangat ya!')
         } else if (status == "single" && rasio_likuiditas >= 4){
-          agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + {dana_darurat_single_bulat} + '.')
-          agent.add('Rasio likuiditas kamu adalah ' + {rasio_likuiditas} + ' dan rasio idealnya adalah 4.')
+          agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + JSON.stringify(dana_darurat_single_bulat) + '.')
+          agent.add('Rasio likuiditas kamu adalah ' + JSON.stringify(rasio_likuiditas) + ' dan rasio idealnya adalah 4.')
           agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         }
 
