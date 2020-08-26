@@ -32,15 +32,20 @@ app.post('/', (req, res)=>{
         const dana_darurat_merid_1_anak = pengeluaran * 9
         const dana_darurat_merid_2_anak = pengeluaran * 12
         
-        const dana_darurat_single_bulat = dana_darurat_single.toLocaleString('de-DE')
-        const dana_darurat_merid_bulat = dana_darurat_merid.toLocaleString('de-DE')
-        const dana_darurat_merid_1_anak_bulat = dana_darurat_merid_1_anak.toLocaleString('de-DE')
-        const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('de-DE')
+        const dana_darurat_single_bulat = dana_darurat_single.toLocaleString('id-ID')
+        const dana_darurat_merid_bulat = dana_darurat_merid.toLocaleString('id-ID')
+        const dana_darurat_merid_1_anak_bulat = dana_darurat_merid_1_anak.toLocaleString('id-ID')
+        const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('id-ID')
 
         if (status == "single" && rasio_likuiditas < 4){
-          agent.add('Semangat! Kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ${dana_darurat_single_bulat}.')
+          agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + {dana_darurat_single_bulat} + '.')
+          agent.add('Rasio likuiditas kamu hanya ' + {rasio_likuiditas} + ', sementara rasio idealnya adalah 4.')
+          agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
+          agent.add('Semangat ya!')
         } else if (status == "single" && rasio_likuiditas >= 4){
-          agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ${dana_darurat_single_bulat}.')
+          agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + {dana_darurat_single_bulat} + '.')
+          agent.add('Rasio likuiditas kamu adalah ' + {rasio_likuiditas} + ' dan rasio idealnya adalah 4.')
+          agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         }
 
         
