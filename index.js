@@ -36,42 +36,43 @@ app.post('/', (req, res)=>{
         const dana_darurat_merid_bulat = dana_darurat_merid.toLocaleString('id-ID')
         const dana_darurat_merid_1_anak_bulat = dana_darurat_merid_1_anak.toLocaleString('id-ID')
         const dana_darurat_merid_2_anak_bulat = dana_darurat_merid_2_anak.toLocaleString('id-ID')
+        const rasio_likuiditas_bulat = Math.round(rasio_likuiditas)
 
         if (status == "single" && rasio_likuiditas < 4){
           agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + dana_darurat_single_bulat + '.')
-          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas + ', sementara rasio idealnya adalah 4.')
+          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas_bulat + ', sementara rasio idealnya adalah 4.')
           agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
           agent.add('Semangat ya!')
         } else if (status == "single" && rasio_likuiditas >= 4){
           agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + dana_darurat_single_bulat + '.')
-          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas + ' dan rasio idealnya adalah 4.')
+          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas_bulat + ' dan rasio idealnya adalah 4.')
           agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         } else if (status == "merid" && rasio_likuiditas < 6){
           agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + dana_darurat_merid_bulat + '.')
-          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas + ', sementara rasio idealnya adalah 6.')
+          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas_bulat + ', sementara rasio idealnya adalah 6.')
           agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
           agent.add('Semangat ya!')
         } else if (status == "merid" && rasio_likuiditas >= 6){
           agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + dana_darurat_merid_bulat + '.')
-          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas + ' dan rasio idealnya adalah 6.')
+          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas_bulat + ' dan rasio idealnya adalah 6.')
           agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         } else if (status == "merid 1 anak" && rasio_likuiditas < 9){
           agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + dana_darurat_merid_1_anak_bulat + '.')
-          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas + ', sementara rasio idealnya adalah 9.')
+          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas_bulat + ', sementara rasio idealnya adalah 9.')
           agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
           agent.add('Semangat ya!')
         } else if (status == "merid 1 anak" && rasio_likuiditas >= 9){
           agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + dana_darurat_merid_1_anak_bulat + '.')
-          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas + ' dan rasio idealnya adalah 9.')
+          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas_bulat + ' dan rasio idealnya adalah 9.')
           agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         } else if (status == "merid 2 anak" && rasio_likuiditas < 12){
           agent.add('Wah, kamu masih harus meningkatkan dana daruratmu hingga mencapai sebesar Rp ' + dana_darurat_merid_2_anak_bulat + '.')
-          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas + ', sementara rasio idealnya adalah 12.')
+          agent.add('Rasio likuiditas kamu hanya ' + rasio_likuiditas_bulat + ', sementara rasio idealnya adalah 12.')
           agent.add('Langkah berikutnya adalah kamu harus segera mulai mengumpulkan dana daruratmu ya! Bisa dengan mulai sisihkan 10% dari penghasilanmu kok!')
           agent.add('Semangat ya!')
         } else if (status == "merid 2 anak" && rasio_likuiditas >= 12){
           agent.add('Kamu keren banget! Dana darurat yang kamu miliki sudah mencapai minimal sebesar Rp ' + dana_darurat_merid_2_anak_bulat + '.')
-          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas + ' dan rasio idealnya adalah 12.')
+          agent.add('Rasio likuiditas kamu adalah ' + rasio_likuiditas_bulat + ' dan rasio idealnya adalah 12.')
           agent.add('Langkah berikutnya adalah kamu harus selalu memastikan bahwa dana daruratmu bersifat likuid. Jangan digunakan untuk investasi dengan risiko tinggi ya!')
         }
 
