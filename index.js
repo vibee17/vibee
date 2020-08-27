@@ -89,6 +89,26 @@ app.post('/', (req, res)=>{
       const dana_tabungan_ideal_bulat = dana_tabungan_ideal.toLocaleString('id-ID')
       const rasio_tabungan_bulat = Math.round(rasio_tabungan)
 
+      const lineMessage = {
+        "type": "template",
+        "altText": "Rasio tabungan",
+        "template": {
+        "type": "buttons",
+        "text": "Yuk kita cek investasi yang sesuai!",
+        "actions": [
+          {
+            "type": "message",
+            "label": "Di sini",
+            "text": "Penjelasan mengenai investasi dong yon"
+          }
+        ]
+        }
+      }
+
+      var payloadtopikinvestasi = new dfff.Payload('LINE', lineMessage, {
+        sendAsMessage: true
+    })
+
       if (rasio_tabungan < 10){
         agent.add('Wah, kamu masih harus memperbaiki pengelolaan keuanganmu untuk menabung paling tidak 10% atau sekitar Rp ' + dana_tabungan_ideal_bulat + '.')
         agent.add('Rasio tabungan kamu hanya ' + rasio_tabungan_bulat + '%.')
@@ -98,9 +118,7 @@ app.post('/', (req, res)=>{
         agent.add('Kamu berhasil membentuk kebiasaan menabung yang baik, dengan menyisihkan minimal sebesar Rp ' + dana_tabungan_ideal_bulat + ' setiap bulannya.')
         agent.add('Rasio tabungan kamu adalah ' + rasio_likuiditas_bulat + '%, di mana rasio idealnya adalah 10%.')
         agent.add('Sekarang langkah berikutnya adalah kamu harus mencari tahu instrumen investasi apa yang cocok buat kamu, sehingga aset kamu bisa berkembang.')
-        agent.add(new dfff.Card({
-          title: 'Yuk cari tahu bareng Dyon!',
-          buttonText: 'Di sini ya!'}))
+        agent.add(payloadtopikinvestasi)
       } 
 
       console.log(`dana tabungan = ${dana_tabungan}, penghasilan = ${penghasilan}, rasio tabungan = ${rasio_tabungan}` )  
