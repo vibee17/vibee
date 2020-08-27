@@ -110,13 +110,12 @@ app.post('/', (req, res)=>{
     })
 
       if (rasio_tabungan < 10){
-        agent.add('Wah, kamu masih harus memperbaiki pengelolaan keuanganmu untuk menabung paling tidak 10% atau sekitar Rp ' + dana_tabungan_ideal_bulat + '.')
-        agent.add('Rasio tabungan kamu hanya ' + rasio_tabungan_bulat + '%.')
+        agent.add('Wah, kamu masih harus memperbaiki pengelolaan keuanganmu untuk menabung paling tidak 10% atau sekitar Rp ' + dana_tabungan_ideal_bulat + '. Karena rasio tabungan kamu hanya ' + rasio_tabungan_bulat + '%.')
         agent.add('Kamu bisa mencoba untuk segera menyisihkan sekitar 10% ketika kamu menerima penghasilan. Lakukan ini secara rutin setiap bulan.')
         agent.add('Kamu pasti bisa! Semangat ya!')
       } else if (rasio_tabungan >= 10){
         agent.add('Kamu berhasil membentuk kebiasaan menabung yang baik, dengan menyisihkan minimal sebesar Rp ' + dana_tabungan_ideal_bulat + ' setiap bulannya.')
-        agent.add('Rasio tabungan kamu adalah ' + rasio_likuiditas_bulat + '%, di mana rasio idealnya adalah 10%.')
+        agent.add('Rasio tabungan kamu adalah ' + rasio_tabungan_bulat + '%, di mana rasio idealnya adalah 10%.')
         agent.add('Sekarang langkah berikutnya adalah kamu harus mencari tahu instrumen investasi apa yang cocok buat kamu, sehingga aset kamu bisa berkembang.')
         agent.add(payloadtopikinvestasi)
       } 
