@@ -98,7 +98,7 @@ app.post('/', (req, res)=>{
         "actions": [
           {
             "type": "message",
-            "label": "Di sini",
+            "label": "Klik di sini",
             "text": "Penjelasan mengenai investasi dong yon"
           }
         ]
@@ -122,6 +122,48 @@ app.post('/', (req, res)=>{
 
       console.log(`dana tabungan = ${dana_tabungan}, penghasilan = ${penghasilan}, rasio tabungan = ${rasio_tabungan}` )  
   }
+
+  function rasio_pelunasan_hutang(agent){
+    const cicilan = agent.parameters.cicilan
+    const penghasilan = agent.parameters.penghasilan
+
+    const rasio_pelunasan_hutang= (cicilan / penghasilan) * 100
+    const cicilan_ideal = penghasilan * 0.3
+    
+    const cicilan_ideal_bulat = cicilan_ideal.toLocaleString('id-ID')
+    const rasio_pelunasan_hutang_bulat = Math.round(rasio_pelunasan_hutang)
+
+    const lineMessage = {
+      "type": "template",
+      "altText": "Rasio pelunasan hutang",
+      "template": {
+      "type": "buttons",
+      "text": "Setelah itu ngapain yon?",
+      "actions": [
+        {
+          "type": "message",
+          "label": "Klik di sini",
+          "text": "Kalau sudah menuliskan semua, apa lagi yang harus aku lakukan yon?"
+        }
+      ]
+      }
+    }
+
+    var payloadtopikpelunasanhutang = new dfff.Payload('LINE', lineMessage, {
+      sendAsMessage: true
+  })
+
+    if (rasio_pelunasan_hutang < 30){
+      agent.add('Bagus sekali. Kamu sudah bisa mengatur cicilanmu dengan baik sehingga cicilanmu saat ini tidak melebihi Rp ' + cicilan_ideal_bulat + '.')
+      agent.add('Rasio pelunasan hutang kamu saat ini adalah ' + rasio_pelunasan_hutang_bulat + '%.')
+      agent.add('Pastikan ke depannya level cicilanmu selalu berada di bawah 30% dan pertimbangkan secara matang sebelum kamu mengambil hutang baru.')
+    } else if (rasio_pelunasan_hutang >= 30){
+      agent.add('Level rasio pelunasan hutang kamu saat ini kurang ideal di mana saat ini  rasiomu adalah sekitar ' + rasio_pelunasan_hutang_bulat + '%.') 
+      agent.add('Idealnya cicilan bulanan kamu tidak melebihi Rp ' + cicilan_ideal_bulat + '%, di mana rasio idealnya adalah 30%.')
+      agent.add('Sekarang yang bisa kamu lakukan adalah coba dituliskan secara detil hutang apa saja yang kamu miliki saat ini.')
+      agent.add(payloadtopikpelunasanhutang)
+    }  
+}
 
     function cek_kebutuhan(agent){
         const umur = req.body.queryResult.parameters["umur_user"]
@@ -233,6 +275,7 @@ app.post('/', (req, res)=>{
     intentMap.set('siklus.kebutuhan.info.cek', cek_kebutuhan)
     intentMap.set('rasio.likuiditas.hitung.dana', rasio_likuiditas)
     intentMap.set('rasio.tabungan.hitung.dana', rasio_tabungan)
+    intentMap.set('rasio.pelunasan.hutang.dana', rasio_pelunasan_hutang)
 
     agent.handleRequest(intentMap)
 })
