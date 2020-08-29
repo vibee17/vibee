@@ -275,7 +275,7 @@ app.post('/', (req, res)=>{
     intentMap.set('siklus.kebutuhan.info.cek', cek_kebutuhan)
     intentMap.set('rasio.likuiditas.hitung.dana', rasio_likuiditas)
     intentMap.set('rasio.tabungan.hitung.dana', rasio_tabungan)
-    intentMap.set('rasio.pelunasan.hutang.dana', rasio_pelunasan_hutang)
+    intentMap.set('rasio.pelunasan.hutang.hitung.dana', rasio_pelunasan_hutang)
 
     agent.handleRequest(intentMap)
 })
