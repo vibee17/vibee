@@ -156,14 +156,36 @@ app.post('/', (req, res)=>{
     if (rasio_pelunasan_hutang < 30){
       agent.add('Bagus sekali. Kamu sudah bisa mengatur cicilanmu dengan baik sehingga cicilanmu saat ini tidak melebihi Rp ' + cicilan_ideal_bulat + '.')
       agent.add('Rasio pelunasan hutang kamu saat ini adalah ' + rasio_pelunasan_hutang_bulat + '%.')
-      agent.add('Pastikan ke depannya level cicilanmu selalu berada di bawah 30% dan pertimbangkan secara matang sebelum kamu mengambil hutang baru.')
+      agent.add('Pastikan ke depannya level cicilanmu selalu berada di bawah 30% dan pertimbangkan secara matang sebelum kamu mengambil hutang baru ya.')
     } else if (rasio_pelunasan_hutang >= 30){
-      agent.add('Level rasio pelunasan hutang kamu saat ini kurang ideal di mana saat ini  rasiomu adalah sekitar ' + rasio_pelunasan_hutang_bulat + '%.') 
-      agent.add('Idealnya cicilan bulanan kamu tidak melebihi Rp ' + cicilan_ideal_bulat + '%, di mana rasio idealnya adalah 30%.')
+      agent.add('Level rasio pelunasan hutang kamu saat ini kurang ideal di mana saat ini rasiomu adalah sekitar ' + rasio_pelunasan_hutang_bulat + '%.') 
+      agent.add('Idealnya cicilan bulanan kamu tidak melebihi Rp ' + cicilan_ideal_bulat + ', di mana rasio idealnya adalah 30%.')
       agent.add('Sekarang yang bisa kamu lakukan adalah coba dituliskan secara detil hutang apa saja yang kamu miliki saat ini.')
       agent.add(payloadtopikpelunasanhutang)
     }  
-}
+  }
+
+  function rasio_lancar(agent){
+    const hutang_pendek = agent.parameters.hutang_jangka_pendek
+    const dana_likuid = agent.parameters.dana_likuid
+
+    const rasio_lancar = (dana_likuid / hutang_pendek)
+    const dana_likuid_ideal = hutang_pendek
+    
+    const dana_likuid_ideal_bulat = dana_likuid_ideal.toLocaleString('id-ID')
+    const rasio_lancar_bulat = rasio_lancar.toFixed(2)
+
+    if (rasio_lancar < 1){
+      agent.add('Kamu punya PR untuk meningkatkan aset lancarmu sampai minimal sekitar Rp ' + dana_likuid_ideal_bulat + '.')
+      agent.add('Rasio lancar kamu saat ini hanya ' + rasio_lancar_bulat + '%.')
+      agent.add('Kamu bisa mulai mengurangi pengeluaran yang tidak perlu atau meningkatkan jumlah yang ditabung setiap bulannya.')
+      agent.add('Semoga berhasil ya!')
+    } else if (rasio_lancar >= 1){
+      agent.add('Mantul! Kamu punya kemampuan untuk membayar hutang jangka pendek kamu dengan minimal total aset lancar sebesar Rp ' + dana_likuid_ideal_bulat +'.') 
+      agent.add('Langkah selanjutnya adalah memastikan bahwa aset lancar kamu tidak kurang dari hutang jangka pendek kamu.')
+
+    }  
+  }
 
     function cek_kebutuhan(agent){
         const umur = req.body.queryResult.parameters["umur_user"]
@@ -276,6 +298,7 @@ app.post('/', (req, res)=>{
     intentMap.set('rasio.likuiditas.hitung.dana', rasio_likuiditas)
     intentMap.set('rasio.tabungan.hitung.dana', rasio_tabungan)
     intentMap.set('rasio.pelunasan.hutang.hitung.dana', rasio_pelunasan_hutang)
+    intentMap.set('rasio.lancar.hitung.dana', rasio_lancar)
 
     agent.handleRequest(intentMap)
 })
