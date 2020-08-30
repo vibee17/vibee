@@ -177,8 +177,8 @@ app.post('/', (req, res)=>{
 
     if (rasio_lancar < 1){
       agent.add('Kamu punya PR untuk meningkatkan aset lancarmu sampai minimal sekitar Rp ' + dana_likuid_ideal_bulat + '.')
-      agent.add('Rasio lancar kamu saat ini hanya ' + rasio_lancar_bulat + '%.')
-      agent.add('Kamu bisa mulai mengurangi pengeluaran yang tidak perlu atau meningkatkan jumlah yang ditabung setiap bulannya.')
+      agent.add('Rasio lancar kamu saat ini hanya ' + rasio_lancar_bulat + '.')
+      agent.add('Kamu bisa mulai dengan mengurangi pengeluaran yang tidak perlu atau meningkatkan jumlah yang ditabung setiap bulannya.')
       agent.add('Semoga berhasil ya!')
     } else if (rasio_lancar >= 1){
       agent.add('Mantul! Kamu punya kemampuan untuk membayar hutang jangka pendek kamu dengan minimal total aset lancar sebesar Rp ' + dana_likuid_ideal_bulat +'.') 
