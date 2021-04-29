@@ -1,5 +1,5 @@
 {
-  "name": "virabeta",
+  "name": "dyon",
   "version": "1.0.0",
   "description": "financial planning",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "CFP",
+  "author": "Dyon",
   "license": "ISC",
   "dependencies": {
     "actions-on-google": "^2.12.0",
