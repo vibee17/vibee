@@ -26,7 +26,8 @@ app.post('/', (req, res)=>{
 		const dana_tunai = agent.parameters.total_dana_tunai
 		const pengeluaran = agent.parameters.total_pengeluaran
 		
-		const rasio_dana_darurat = Math.round(((dana_tunai / pengeluaran) * 100) / 100) 
+		const rasio_dana_darurat = dana_tunai / pengeluaran
+		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2)
 		
 		const lineMessage = {
 		"type": "template",
@@ -60,7 +61,7 @@ app.post('/', (req, res)=>{
 2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
 3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
 Lihat info lengkapnya di sini http://bca.id/virabukarekening `)
-			agent.add(payloaddana_darurat)
+			
 		}
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dana_darurat}, status = ${status}` )
