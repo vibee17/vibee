@@ -22,7 +22,7 @@ app.post('/', (req, res)=>{
     }
 
     function cek_dana_darurat(agent) {
-		const status = agent.context.get('cekupgennama-followup').parameters['statusmarried']
+		const status = agent.context.get('session-vars').parameters['statusmarried']
 		const dana_tunai = agent.parameters.total_dana_tunai
 		const pengeluaran = agent.parameters.total_pengeluaran
 		
