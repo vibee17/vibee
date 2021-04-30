@@ -29,7 +29,7 @@ app.post('/', (req, res)=>{
 		const rasio_dana_darurat = dana_tunai / pengeluaran
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2)
 		
-		const lineMessage = {
+		const lineMessage1 = {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -55,6 +55,27 @@ app.post('/', (req, res)=>{
 		rawPayload : false
 		})
 		
+		const lineMessage = {
+        "type": "template",
+        "altText": "Rasio tabungan",
+        "template": {
+        "type": "buttons",
+        "text": "Yuk kita cek investasi yang sesuai!",
+        "actions": [
+          {
+            "type": "message",
+            "label": "Klik di sini",
+            "text": "Penjelasan mengenai investasi dong yon"
+          }
+        ]
+        }
+      }
+
+      var payloadtopikinvestasi = new dfff.Payload('LINE', lineMessage, {
+        sendAsMessage: true
+    })
+		
+		
 		if (status == "belum" && rasio_dana_darurat < 3) {
 			agent.add('Berdasarkan perhitungan VIRA, rasio dana darurat kamu adalah ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio dana darurat yang ideal adalah 3 ke atas. Yuk bisa yuk!')
 			agent.add(`VIRA punya beberapa saran buat kamu yang mau mulai kumpulin dana darurat: 
@@ -62,13 +83,13 @@ app.post('/', (req, res)=>{
 2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
 3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
 Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
-			agent.add(payloaddana_darurat)
+			agent.add(payloadtopikinvestasi)
 		}
 		
 				if (status == "belum" && rasio_dana_darurat >= 3) {
 			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio yang ideal adalah 3 ke atas. Nah pastiin aja dana tersebut bisa kamu ambil kapan aja saat dibutuhkan, bisa juga disimpan di tabungan, misalnya Tahapan BCA.')
 			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
-			agent.add(payloaddana_darurat)
+			agent.add(payloadtopikinvestasi)
 		}
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` )
