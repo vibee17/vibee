@@ -51,8 +51,7 @@ app.post('/', (req, res)=>{
 		}
 
 		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage, {
-		sendAsMessage : true,
-		rawPayload : false
+		sendAsMessage : true
 		})
 		
 		const lineMessage = {
@@ -65,7 +64,7 @@ app.post('/', (req, res)=>{
           {
             "type": "message",
             "label": "Klik di sini",
-            "text": "Penjelasan mengenai investasi dong yon"
+            "text": "Klik di sini"
           }
         ]
         }
