@@ -50,7 +50,7 @@ app.post('/', (req, res)=>{
 					}
 		}
 
-		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage, {
+		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage1, {
 		sendAsMessage : true
 		})
 		
@@ -85,7 +85,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 			agent.add(payloadtopikinvestasi)
 		}
 		
-				if (status == "belum" && rasio_dana_darurat >= 3) {
+		if (status == "belum" && rasio_dana_darurat >= 3) {
 			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio yang ideal adalah 3 ke atas. Nah pastiin aja dana tersebut bisa kamu ambil kapan aja saat dibutuhkan, bisa juga disimpan di tabungan, misalnya Tahapan BCA.')
 			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
 			agent.add(payloadtopikinvestasi)
