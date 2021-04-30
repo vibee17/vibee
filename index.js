@@ -22,13 +22,13 @@ app.post('/', (req, res)=>{
     }
 
     function cek_dana_darurat(agent) {
-		const status = req.body.queryResult.parameters["statusmerried"]
+		const status = agent.parameters.statusmerried
 		const dana_tunai = agent.parameters.total_dana_tunai
 		const pengeluaran = agent.parameters.total_pengeluaran
 		
 		const rasio_dana_darurat = Math.round(((dana_tunai / pengeluaran) * 100) / 100) 
 		
-		const lineMessagedanadarurat = {
+		const lineMessage = {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -49,7 +49,7 @@ app.post('/', (req, res)=>{
 					}
 		}
 
-		var payloaddana_darurat = new dfff.Payload('LINE', lineMessagedanadarurat, {
+		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage, {
 		sendAsMessage: true
 		})
 		
