@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
-const dfff = require('dialogflow-fulfillment')
+const {WebhookClient, Payload, Card} = require('dialogflow-fulfillment')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -12,7 +12,7 @@ app.get('/', (req, res) => {
 
 
 app.post('/', (req, res)=>{
-    const agent = new dfff.WebhookClient({
+    const agent = new WebhookClient({
         request : req,
         response : res
     })
@@ -29,7 +29,7 @@ app.post('/', (req, res)=>{
 		const rasio_dana_darurat = dana_tunai / pengeluaran
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2)
 		
-		const lineMessage1 = {
+		const buttoncekup = {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -50,30 +50,7 @@ app.post('/', (req, res)=>{
 					}
 		}
 
-		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage1, {
-		sendAsMessage : true
-		})
-		
-		const lineMessage = {
-        "type": "template",
-        "altText": "Rasio tabungan",
-        "template": {
-        "type": "buttons",
-        "text": "Yuk kita cek investasi yang sesuai!",
-        "actions": [
-          {
-            "type": "message",
-            "label": "Klik di sini",
-            "text": "Klik di sini"
-          }
-        ]
-        }
-      }
-
-      var payloadtopikinvestasi = new dfff.Payload('LINE', lineMessage, {
-        sendAsMessage: true
-    })
-		
+		let button_cek_up_dd = new Payload('LINE', buttoncekup, { sendAsMessage : true })
 		
 		if (status == "belum" && rasio_dana_darurat < 3) {
 			agent.add('Berdasarkan perhitungan VIRA, rasio dana darurat kamu adalah ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio dana darurat yang ideal adalah 3 ke atas. Yuk bisa yuk!')
@@ -82,7 +59,7 @@ app.post('/', (req, res)=>{
 2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
 3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
 Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
-			agent.add(payloadtopikinvestasi)
+			agent.add(button_cek_up_dd)
 		}
 		
 		if (status == "belum" && rasio_dana_darurat >= 3) {
@@ -178,7 +155,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
         }
       }
 
-      var payloadtopikinvestasi = new dfff.Payload('LINE', lineMessage, {
+      var payloadtopikinvestasi = new Payload('LINE', lineMessage, {
         sendAsMessage: true
     })
 
@@ -222,7 +199,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
       }
     }
 
-    var payloadtopikpelunasanhutang = new dfff.Payload('LINE', lineMessage, {
+    var payloadtopikpelunasanhutang = new Payload('LINE', lineMessage, {
       sendAsMessage: true
   })
 
@@ -342,7 +319,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
         
         }
 
-        var payloadDB21S = new dfff.Payload('LINE', lineMessage, {
+        var payloadDB21S = new Payload('LINE', lineMessage, {
             sendAsMessage: true
         })
 
@@ -350,7 +327,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
         agent.add("Untuk saat ini, kamu bisa mulai dari menabung dulu. Ga masalah berapapun nominalnya. Akan lebih baik juga apabila ditabung di bank, dibandingkan disimpan secara tunai. Selain lebih aman, kamu juga bisa menginvestasikannya nanti.")
         agent.add("Selain itu, mulailah mencatat setiap pengeluaranmu, seperti jajan gorengan, beli pulsa, dan lain-lain agar kebiasaan mencatat bisa terbentuk. Ini akan sangat berguna seiring kamu semakin pandai mengatur keuangan.")
         agent.add("Sambilan kamu juga bisa menambah pengetahuanmu mengenai rencana keuangan.")
-        agent.add(new dfff.Card({
+        agent.add(new Card({
             title: 'hello1',
             text: 'test1',
             imageUrl: 'https://goo.gl/aeDtrS',
