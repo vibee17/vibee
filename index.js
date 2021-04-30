@@ -51,8 +51,8 @@ app.post('/', (req, res)=>{
 		}
 
 		var payloaddana_darurat = new dfff.Payload('LINE', lineMessage, {
-		sendAsMessage = true,
-		rawPayload = false
+		sendAsMessage : true,
+		rawPayload : false
 		})
 		
 		if (status == "belum" && rasio_dana_darurat < 3) {
