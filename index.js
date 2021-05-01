@@ -52,7 +52,7 @@ app.post('/', (req, res)=>{
 					}
 		};
 
-		let button_cek_up_dd = new Payload(agent.LINE, buttoncekup_dd, { sendAsMessage : true, rawPayload: false });
+		let button_cek_up_dd = new Payload(agent.Actions_On_Google, buttoncekup_dd, { sendAsMessage : true, rawPayload: false });
 		
 		if (status == "belum") { 
 			if (rasio_dana_darurat < 3) {
@@ -136,7 +136,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 					}
 		};
 
-		let button_cek_up_cicilan = new Payload(agent.LINE, buttoncekup_ci, { sendAsMessage : true, rawPayload: false });		
+		let button_cek_up_cicilan = new Payload(agent.unspecified, buttoncekup_ci, { sendAsMessage : true, rawPayload: false });		
 
 		if (rasio_utang < 0.3) { 
 		agent.add(`Nah, menurut VIRA kamu sudah cukup oke kok dalam mengatur porsi cicilan. Yeay!
@@ -184,7 +184,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 					}
 		};
 
-		let button_cek_up_investasi = new Payload(agent.LINE, buttoncekup_iv, { sendAsMessage : true, rawPayload: false });		
+		let button_cek_up_investasi = new Payload(agent.unspecified, buttoncekup_iv, { sendAsMessage : true, rawPayload: false });		
 
 		if (rasio_investasi < 0.1) { 
 		agent.add('Yuk, pelan-pelan mulai atur lagi dana investasi kamu yaa. Untuk investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Dengan berinvestasi kita jadi belajar untuk mengatur keuangan yang lebih  baik di masa depan.')
