@@ -108,7 +108,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 	}	
 
 	function cek_cicilan(agent) {
-
+		const status = agent.context.get('session-vars').parameters['statusmarried'];
 		const utang = agent.parameters.total_cicilan;
 		const pendapatan = agent.parameters.total_pendapatan;		
 		
@@ -156,7 +156,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	}
 
 	function cek_investasi(agent) {
-
+		const status = agent.context.get('session-vars').parameters['statusmarried'];
 		const sisihan = agent.parameters.total_sisihan;
 		const pendapatan = agent.parameters.total_pendapatan;		
 		
