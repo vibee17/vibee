@@ -102,7 +102,8 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		}
 		};
 		
-		agent.add(new Payload('LINE', button_cek_up_dd, { sendAsMessage : true }));
+		agent.add(button_cek_up_dd);
+		agent.add(button_cek_up_dd);
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` );
 	}	
