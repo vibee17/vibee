@@ -44,6 +44,11 @@ app.post('/', (req, res)=>{
 					"type": "message",
 					"label": "Cicilan",
 					"text": "Cicilan"
+				},
+				{
+					"type": "message",
+					"label": "Dana Investasi",
+					"text": "Dana Investasi"
 				}
 						]
 					}
