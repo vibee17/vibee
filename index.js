@@ -37,7 +37,7 @@ app.post('/', (req, res)=>{
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
-			"type": "confirm",
+			"type": "buttons",
 			"text": "Cek kondisi finansial lainnya",
 			"actions": [
 				{
