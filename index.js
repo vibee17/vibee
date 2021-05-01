@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
@@ -115,9 +113,9 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		const pendapatan = agent.parameters.total_pendapatan;		
 		
 		const rasio_utang = utang / pendapatan;
-		const rasio_dd_utang = rasio_utang.toFixed(2);
+		const rasio_utang_bulat = rasio_utang.toFixed(2);
 		
-		const buttoncekup = {
+		const buttoncekup_ci = {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -138,7 +136,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 					}
 		};
 
-		let button_cek_up_cicilan = new Payload(agent.LINE, buttoncekup, { sendAsMessage : true, rawPayload: false });		
+		let button_cek_up_cicilan = new Payload(agent.LINE, buttoncekup_ci, { sendAsMessage : true, rawPayload: false });		
 
 		if (rasio_utang < 0.3) { 
 		agent.add(`Nah, menurut VIRA kamu sudah cukup oke kok dalam mengatur porsi cicilan. Yeay!
@@ -154,6 +152,54 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		}
 		agent.add(button_cek_up_cicilan);
 		
+		console.log(`utang = ${utang}, pendapatan = ${pendapatan}, rasio utang = ${rasio_utang_bulat}, status = ${status}`)
+	}
+
+	function cek_investasi(agent) {
+
+		const sisihan = agent.parameters.total_sisihan;
+		const pendapatan = agent.parameters.total_pendapatan;		
+		
+		const rasio_investasi = sisihan / pendapatan;
+		const rasio_investasi_bulat = rasio_investasi.toFixed(2);
+		
+		const buttoncekup_iv = {
+		"type": "template",
+		"altText": "Kriteria lainnya",
+		"template": {
+			"type": "buttons",
+			"text": "Cek kondisi finansial lainnya",
+			"actions": [
+				{
+					"type": "message",
+					"label": "Dana Darurat",
+					"text": "Dana darurat"
+				},
+				{
+					"type": "message",
+					"label": "Cicilan",
+					"text": "Cicilan"
+				}
+						]
+					}
+		};
+
+		let button_cek_up_investasi = new Payload(agent.LINE, buttoncekup_iv, { sendAsMessage : true, rawPayload: false });		
+
+		if (rasio_investasi < 0.1) { 
+		agent.add('Yuk, pelan-pelan mulai atur lagi dana investasi kamu yaa. Untuk investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Dengan berinvestasi kita jadi belajar untuk mengatur keuangan yang lebih  baik di masa depan.')
+		agent.add(`Nah, saran dari VIRA:
+1. Setelah bayar semua kewajiban kayak tagihan rutin, sisihkan minimal 10% buat investasi, sebelum dialokasikan buat pengeluaran lainnya 
+2. Kamu bisa manfaatin promo-promo menarik dari BCA! Cek ke https://bca.id/PROMONYABCA 
+3. Supaya gak lupa untuk nyisihin dana investasi, kamu bisa pakai Tabungan Berjangka. Gak perlu lagi repot transfer tiap bulan, karena uang tabungan diautodebet tiap bulan dari rekening sumber dana. Cek selengkapnya di sini https://bca.id/infotahapanberjangka`)			
+		}
+		
+		else if (rasio_investasi >= 0.1) {
+		agent.add('Menurut VIRA kamu keren karena udah terbiasa buat nabung ataupun investasi Investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Tinggal pastiin aja instrumen investasi kamu sudah sesuai sama tujuan keuangan dan profil risiko kamu!')
+		agent.add('Dalam investasi inget aja prinsip “High risk, high return” yaa! Nah buat kamu yang pengen tahu gambaran diri saat menghadapi risiko berinvestasi, cek dulu profil risiko kamu di sini https://bca.id/viraprofilrisiko')
+		}
+		agent.add(button_cek_up_investasi);
+		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}`)
 	}
 
     var intentMap = new Map()
@@ -161,6 +207,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
     intentMap.set('webhookDemo', demo)
 	intentMap.set('cek.up.gen.dana.darurat', cek_dana_darurat)
 	intentMap.set('cek.up.gen.cicilan', cek_cicilan)
+	intentMap.set('cek.up.gen.investasi', cek_investasi)
     agent.handleRequest(intentMap)
 })
 
