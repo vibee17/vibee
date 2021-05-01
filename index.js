@@ -1,7 +1,11 @@
+'use strict';
+
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 8080
 const {WebhookClient, Payload, Card} = require('dialogflow-fulfillment')
+
+process.env.DEBUG = 'dialogflow:debug';
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -33,7 +37,7 @@ app.post('/', (req, res)=>{
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
-			"type": "buttons",
+			"type": "confirm",
 			"text": "Cek kondisi finansial lainnya",
 			"actions": [
 				{
