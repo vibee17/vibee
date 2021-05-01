@@ -54,7 +54,26 @@ app.post('/', (req, res)=>{
 					}
 		};
 
-		let button_cek_up_dd = new Payload(agent.LINE, buttoncekup, { sendAsMessage : true, rawPayload: false });
+		let button_cek_up_dd = new Payload(agent.LINE, {		
+		"type": "template",
+		"altText": "Kriteria lainnya",
+		"template": {
+			"type": "buttons",
+			"text": "Cek kondisi finansial lainnya",
+			"actions": [
+				{
+					"type": "message",
+					"label": "Cicilan",
+					"text": "Cicilan"
+				},
+				{
+					"type": "message",
+					"label": "Dana Investasi",
+					"text": "Dana Investasi"
+				}
+						]
+					}
+		}, { sendAsMessage : true, rawPayload: false });
 		
 		if (status == "belum") { 
 			if (rasio_dana_darurat < 3) {
