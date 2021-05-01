@@ -102,7 +102,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		}
 		};
 		
-		agent.add(new Payload('LINE', {
+		agent.add( Payload('LINE', {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -169,7 +169,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 1. Sebelum ngambil cicilan baru, coba pertimbangkan lagi apakah itu kebutuhan atau keinginan.
 2. Coba prioritaskan untuk melunasi cicilan kartu kredit kamu dengan mengurangi alokasi pengeluaran yang kurang mendesak yaa.`)
 		}
-		agent.add(new Payload('LINE', {
+		agent.add( Payload('LINE', {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
@@ -236,7 +236,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Menurut VIRA kamu keren karena udah terbiasa buat nabung ataupun investasi Investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Tinggal pastiin aja instrumen investasi kamu sudah sesuai sama tujuan keuangan dan profil risiko kamu!')
 		agent.add('Dalam investasi inget aja prinsip “High risk, high return” yaa! Nah buat kamu yang pengen tahu gambaran diri saat menghadapi risiko berinvestasi, cek dulu profil risiko kamu di sini https://bca.id/viraprofilrisiko')
 		}
-		agent.add(new Payload('LINE', {
+		agent.add(Payload('LINE', {
 		"type": "template",
 		"altText": "Kriteria lainnya",
 		"template": {
