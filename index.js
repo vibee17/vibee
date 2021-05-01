@@ -65,7 +65,39 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		if (status == "belum" && rasio_dana_darurat >= 3) {
 			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio yang ideal adalah 3 ke atas. Nah pastiin aja dana tersebut bisa kamu ambil kapan aja saat dibutuhkan, bisa juga disimpan di tabungan, misalnya Tahapan BCA.')
 			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
-			agent.add(payloadtopikinvestasi)
+			agent.add(button_cek_up_dd)
+		}
+		
+		if (status == "sudahxanak" && rasio_dana_darurat < 9) {
+			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus menikah dan belum punya anak, rasio dana darurat yang ideal adalah 9 ke atas. Yuk bisa yuk!')
+			agent.add(`VIRA punya beberapa saran buat kamu yang mau mulai kumpulin dana darurat: 
+1. Langsung sisihkan minimal 10% pendapatan setelah bayar semua kewajiban
+2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
+3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
+Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
+			agent.add(button_cek_up_dd)
+		}
+		
+		if (status == "sudahanak" && rasio_dana_darurat >= 9) {
+			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus menikah dan belum punya anak, rasio yang ideal adalah 9 ke atas. Nah pastiin aja dana tersebut bisa kamu ambil kapan aja saat dibutuhkan, bisa juga disimpan di tabungan, misalnya Tahapan BCA.')
+			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
+			agent.add(button_cek_up_dd)
+		}
+		
+		if (status == "sudahanak" && rasio_dana_darurat < 12) {
+			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus menikah dan sudah punya anak, rasio dana darurat yang ideal adalah 12 ke atas. Yuk bisa yuk!')
+			agent.add(`VIRA punya beberapa saran buat kamu yang mau mulai kumpulin dana darurat: 
+1. Langsung sisihkan minimal 10% pendapatan setelah bayar semua kewajiban
+2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
+3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
+Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
+			agent.add(button_cek_up_dd)
+		}
+		
+		if (status == "sudahxanak" && rasio_dana_darurat >= 12) {
+			agent.add('Menurut VIRA, dana daruratmu udah cukup optimal kok yaitu di angka rasio ' + rasio_dd_bulat + '. Buat yang berstatus menikah dan sudah punya anak, rasio yang ideal adalah 12 ke atas. Nah pastiin aja dana tersebut bisa kamu ambil kapan aja saat dibutuhkan, bisa juga disimpan di tabungan, misalnya Tahapan BCA.')
+			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
+			agent.add(button_cek_up_dd)
 		}
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` )
