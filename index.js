@@ -102,26 +102,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		}
 		};
 		
-		agent.add(new Payload('LINE', {
-		"type": "template",
-		"altText": "Kriteria lainnya",
-		"template": {
-			"type": "buttons",
-			"text": "Cek kondisi finansial lainnya",
-			"actions": [
-				{
-					"type": "message",
-					"label": "Cicilan",
-					"text": "Cicilan"
-				},
-				{
-					"type": "message",
-					"label": "Dana Investasi",
-					"text": "Dana Investasi"
-				}
-						]
-					}
-		}, { sendAsMessage : true }));
+		agent.add(new Payload('LINE', button_cek_up_dd, { sendAsMessage : true }));
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` );
 	}	
@@ -161,6 +142,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		agent.add(`Nah, menurut VIRA kamu sudah cukup oke kok dalam mengatur porsi cicilan. Yeay!
 Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapatanmu. Lalu, sisihkan juga buat investasi biar tabungan kamu gak terkikis inflasi.`)
 		agent.add('Kalau kamu mau investasi di obligasi atau reksadana secara online bisa lewat aplikasi WELMA. Lihat info lengkapnya di sini https://bca.id/infolengkapwelma')			
+		agent.add(button_cek_up_cicilan)
 		}
 		
 		else if (rasio_utang >= 0.3) {
@@ -168,28 +150,9 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add(`Beberapa saran dari VIRA: 
 1. Sebelum ngambil cicilan baru, coba pertimbangkan lagi apakah itu kebutuhan atau keinginan.
 2. Coba prioritaskan untuk melunasi cicilan kartu kredit kamu dengan mengurangi alokasi pengeluaran yang kurang mendesak yaa.`)
+		agent.add(button_cek_up_cicilan)
 		}
-		agent.add(new Payload('LINE', {
-		"type": "template",
-		"altText": "Kriteria lainnya",
-		"template": {
-			"type": "buttons",
-			"text": "Cek kondisi finansial lainnya",
-			"actions": [
-				{
-					"type": "message",
-					"label": "Dana Darurat",
-					"text": "Dana darurat"
-				},
-				{
-					"type": "message",
-					"label": "Dana Investasi",
-					"text": "Dana Investasi"
-				}
-						]
-					}
-		}, { sendAsMessage : true }));
-		agent.add(button_cek_up_cicilan);
+
 		console.log(`utang = ${utang}, pendapatan = ${pendapatan}, rasio utang = ${rasio_utang_bulat}, status = ${status}`)
 	}
 
@@ -236,26 +199,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Menurut VIRA kamu keren karena udah terbiasa buat nabung ataupun investasi Investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Tinggal pastiin aja instrumen investasi kamu sudah sesuai sama tujuan keuangan dan profil risiko kamu!')
 		agent.add('Dalam investasi inget aja prinsip “High risk, high return” yaa! Nah buat kamu yang pengen tahu gambaran diri saat menghadapi risiko berinvestasi, cek dulu profil risiko kamu di sini https://bca.id/viraprofilrisiko')
 		}
-		agent.add(new Payload('LINE', {
-		"type": "template",
-		"altText": "Kriteria lainnya",
-		"template": {
-			"type": "buttons",
-			"text": "Cek kondisi finansial lainnya",
-			"actions": [
-				{
-					"type": "message",
-					"label": "Dana Darurat",
-					"text": "Dana darurat"
-				},
-				{
-					"type": "message",
-					"label": "Cicilan",
-					"text": "Cicilan"
-				}
-						]
-					}
-		}, { sendAsMessage : true }));
+
 		agent.add(button_cek_up_investasi);
 		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}`)
 	}
