@@ -32,28 +32,7 @@ app.post('/', (req, res)=>{
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2);
 			    
 	    	return hitung_dd(status, rasio_dana_darurat);
-	    
-		agent.add(new Payload('LINE', { 		
-				     	"type": "template",
-					"altText": "Kriteria lainnya",
-					"template": {
-					"type": "buttons",
-					"text": "Cek kondisi finansial lainnya",
-					"actions": [
-						{
-							"type": "message",
-							"label": "Cicilan",
-							"text": "Cicilan"
-						},
-						{
-							"type": "message",
-							"label": "Dana Investasi",
-							"text": "Dana Investasi"
-						}
-					]
-					}
-					}, { sendAsMessage : true })
-		
+	    			
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` );
 	}	
 
