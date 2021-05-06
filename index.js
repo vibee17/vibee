@@ -55,7 +55,7 @@ app.post('/', (req, res)=>{
 
 		let button_cek_up_dd = new Payload('LINE', buttoncekup_dd, { sendAsMessage : true });
 		
-	    	if (kriteriacek == "Darurat") then {
+	    	if (kriteriacek == "Darurat") {
 		if (status == "belum" && rasio_dana_darurat < 3) {
 			agent.add('Berdasarkan perhitungan VIRA, rasio dana darurat kamu adalah ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio dana darurat yang ideal adalah 3 ke atas. Yuk bisa yuk!')
 			agent.add(`VIRA punya beberapa saran buat kamu yang mau mulai kumpulin dana darurat: 
@@ -136,7 +136,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 
 		let button_cek_up_cicilan = new Payload('LINE', buttoncekup_ci, { sendAsMessage : true });		
 
-		if (kriteria_cek == "Cicilan") then {
+		if (kriteria_cek == "Cicilan") {
 			if (rasio_utang < 0.3) { 
 		agent.add(`Nah, menurut VIRA kamu sudah cukup oke kok dalam mengatur porsi cicilan. Yeay!
 Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapatanmu. Lalu, sisihkan juga buat investasi biar tabungan kamu gak terkikis inflasi.`)
@@ -188,7 +188,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 
 		let button_cek_up_investasi = new Payload('LINE', buttoncekup_iv, { sendAsMessage : true });		
 
-		if (kriteria_cek == "Investasi") then {
+		if (kriteria_cek == "Investasi") {
 		if (rasio_investasi < 0.1) { 
 		agent.add('Yuk, pelan-pelan mulai atur lagi dana investasi kamu yaa. Untuk investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Dengan berinvestasi kita jadi belajar untuk mengatur keuangan yang lebih  baik di masa depan.')
 		agent.add(`Nah, saran dari VIRA:
