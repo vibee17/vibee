@@ -100,7 +100,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 		
 		agent.add(button_cek_up_dd);
 		
-		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}, kriteria = ${kriteriacek}` );
+		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}, kriteria = ${kriteria_cek}` );
 	}	
 
 	function cek_cicilan(agent) {
@@ -150,7 +150,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add(button_cek_up_cicilan)
 		}
 
-		console.log(`utang = ${utang}, pendapatan = ${pendapatan}, rasio utang = ${rasio_utang_bulat}, status = ${status}, kriteria = ${kriteriacek}`)
+		console.log(`utang = ${utang}, pendapatan = ${pendapatan}, rasio utang = ${rasio_utang_bulat}, status = ${status}, kriteria = ${kriteria_cek}`)
 	}
 
 	function cek_investasi(agent) {
@@ -199,7 +199,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		}
 
 		agent.add(button_cek_up_investasi)	
-		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}, kriteria = ${kriteriacek}`)
+		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}, kriteria = ${kriteria_cek}`)
 	}
 
     var intentMap = new Map()
