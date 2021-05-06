@@ -25,7 +25,7 @@ app.post('/', (req, res)=>{
 
     function cek_dana_darurat(agent) {
 		const status = agent.context.get('session-vars').parameters['statusmarried'];
-		const kriteria_cek = agent.parameters.kriteriacek;
+		const kriteria_cek = agent.parameters.kriteria_cek;
 	    	const dana_tunai = agent.parameters.total_dana_tunai;
 		const pengeluaran = agent.parameters.total_pengeluaran;
 		
@@ -105,7 +105,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 
 	function cek_cicilan(agent) {
 		const status = agent.context.get('session-vars').parameters['statusmarried'];
-		const kriteria_cek = agent.parameters.kriteriacek;
+		const kriteria_cek = agent.parameters.kriteria_cek;
 		const utang = agent.parameters.total_cicilan;
 		const pendapatan = agent.parameters.total_pendapatan;		
 				
@@ -155,7 +155,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 
 	function cek_investasi(agent) {
 		const status = agent.context.get('session-vars').parameters['statusmarried'];
-		const kriteria_cek = agent.parameters.kriteriacek;
+		const kriteria_cek = agent.parameters.kriteria_cek;
 		const sisihan = agent.parameters.total_sisihan;
 		const pendapatan = agent.parameters.total_pendapatan;	
 				
