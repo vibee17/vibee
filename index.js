@@ -52,7 +52,7 @@ app.post('/', (req, res)=>{
 						}
 					]
 					}
-					}, { sendAsMessage : true });
+					}, { sendAsMessage : true })
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}` );
 	}	
