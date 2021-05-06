@@ -31,7 +31,7 @@ app.post('/', (req, res)=>{
 		const rasio_dana_darurat = dana_tunai / pengeluaran;
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2);
 			    
-	    	function hitung_dd(status, rasio_dana_darurat);
+	    	return hitung_dd(status, rasio_dana_darurat);
 	    
 		agent.add(new Payload('LINE', { 		
 				     	"type": "template",
@@ -88,7 +88,7 @@ app.post('/', (req, res)=>{
 
 		let button_cek_up_cicilan = new Payload('LINE', buttoncekup_ci, { sendAsMessage : true });		
 
-		function hitung_cicilan(rasio_utang, button_cek_up_cicilan);
+		return hitung_cicilan(rasio_utang, button_cek_up_cicilan);
 
 		console.log(`utang = ${utang}, pendapatan = ${pendapatan}, rasio utang = ${rasio_utang_bulat}, status = ${status}`)
 	}
@@ -124,7 +124,7 @@ app.post('/', (req, res)=>{
 
 		let button_cek_up_investasi = new Payload('LINE', buttoncekup_iv, { sendAsMessage : true });		
 		
-		function hitung_investasi(rasio_investasi);
+		return hitung_investasi(rasio_investasi);
 
 		agent.add(button_cek_up_investasi);
 
