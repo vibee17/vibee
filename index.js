@@ -62,7 +62,8 @@ app.post('/', (req, res)=>{
 1. Langsung sisihkan minimal 10% pendapatan setelah bayar semua kewajiban
 2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
 3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
-Lihat info lengkapnya di sini https://bca.id/virabukarekening`)			
+Lihat info lengkapnya di sini https://bca.id/virabukarekening`)	
+			agent.add(button_cek_up_dd);
 		}
 		
 		else if (kriteria_cek == "Darurat" && status == "belum" && rasio_dana_darurat >= 3) {
@@ -98,7 +99,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
 		}
 		
-		agent.add(button_cek_up_dd);
+		
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}, kriteria = ${kriteria_cek}` );
 	}	
