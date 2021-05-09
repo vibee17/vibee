@@ -34,25 +34,82 @@ app.post('/', (req, res)=>{
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2);
 		
 		const lineMessage = {
-		"type": "template",
-		"altText": "Kriteria lainnya",
-		"template": {
-			"type": "buttons",
-			"text": "Cek kondisi finansial lainnya",
-			"actions": [
-				{
-					"type": "message",
-					"label": "Cicilan",
-					"text": "Cicilan"
-				},
-				{
-					"type": "message",
-					"label": "Dana Investasi",
-					"text": "Dana Investasi"
-				}
-						]
-					}
-		}
+            "altText": "Langkah-langkah perencanaan keuangan",
+            "template": {
+            "imageAspectRatio": "rectangle",
+            "imageSize": "cover",
+            "type": "carousel",
+            "columns": [
+                {
+                    "imageBackgroundColor": "#FFFFFF",
+                    "actions": [
+                        {
+                            "text": "Penjelasan evaluasi kondisi keuangan dong",
+                            "type": "message",
+                            "label": "Lebih lengkap"
+                        }
+                                ],
+          "text": "Pertama, ketahui dulu posisi keuanganmu saat ini.",
+          "thumbnailImageUrl": "https://i.ibb.co/9wjM0rM/Langkah-1.jpg",
+          "title": "Evaluasi kondisi keuangan"
+                },
+                {
+          "thumbnailImageUrl": "https://i.ibb.co/Y3gxL2T/Langkah-2.jpg",
+          "actions": [
+            {
+              "text": "Penjelasan susun tujuan keuangan dong",
+              "type": "message",
+              "label": "Lebih lengkap"
+            }
+          ],
+          "imageBackgroundColor": "#000000",
+          "text": "Kedua, cari tahu apa tujuan yang ingin kamu capai.",
+          "title": "Susun tujuan keuangan"
+        },
+        {
+          "actions": [
+            {
+              "type": "message",
+              "text": "Penjelasan susun rencana keuangan dong",
+              "label": "Lebih lengkap"
+            }
+          ],
+          "imageBackgroundColor": "#000000",
+          "title": "Susun rencana keuangan",
+          "text": "Ketiga, buat rencana untuk mencapai tujuan keuangan.",
+          "thumbnailImageUrl": "https://i.ibb.co/cxnZkpz/Langkah-3.jpg"
+        },
+        {
+          "text": "Keempat, realisasikan rencana yang sudah disusun.",
+          "title": "Jalankan rencana keuangan",
+          "actions": [
+            {
+              "type": "message",
+              "text": "Penjelasan jalankan rencana keuangan dong",
+              "label": "Lebih lengkap"
+            }
+          ],
+          "imageBackgroundColor": "#000000",
+          "thumbnailImageUrl": "https://i.ibb.co/7yQM7d4/Langkah-4-2.jpg"
+        },
+        {
+          "title": "Review kembali rencana",
+          "actions": [
+            {
+              "label": "Lebih lengkap",
+              "type": "message",
+              "text": "Penjelasan review kembali rencana keuangan dong"
+            }
+          ],
+          "imageBackgroundColor": "#000000",
+          "text": "Kelima, review kembali rencana setelah realisasi",
+          "thumbnailImageUrl": "https://i.ibb.co/JxMwt3c/Langkah-5-2.jpg"
+        }
+      ]
+    },
+    "type": "template"
+        
+        }
 
 		var button_cek_up_dd = new Payload('LINE', lineMessage, {
 			sendAsMessage: true
