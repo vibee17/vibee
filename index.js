@@ -52,9 +52,9 @@ app.post('/', (req, res)=>{
 				}
 						]
 					}
-		};
+		}
 
-		let button_cek_up_dd = new Payload('LINE', buttoncekup_dd, { sendAsMessage : true });
+		var button_cek_up_dd = new Payload('LINE', buttoncekup_dd, { sendAsMessage : true });
 		
 		if (kriteria_cek == "Darurat" && status == "belum" && rasio_dana_darurat < 3) {
 			agent.add('Berdasarkan perhitungan VIRA, rasio dana darurat kamu adalah ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio dana darurat yang ideal adalah 3 ke atas. Yuk bisa yuk!')
@@ -62,8 +62,7 @@ app.post('/', (req, res)=>{
 1. Langsung sisihkan minimal 10% pendapatan setelah bayar semua kewajiban
 2. Coba kurangi pengeluaran yang tidak terlalu mendesak ya
 3. Dana darurat bisa disimpan di tabungan terpisah dan pastiin bisa diambil kapan aja dibutuhkan, misalnya di Tahapan BCA. Kalau kamu belum punya, sekarang buka rekening gak harus ke kantor cabang, kamu bisa buka rekening lewat aplikasi BCA mobile. 
-Lihat info lengkapnya di sini https://bca.id/virabukarekening`)	
-			agent.add(button_cek_up_dd);
+Lihat info lengkapnya di sini https://bca.id/virabukarekening`)			
 		}
 		
 		else if (kriteria_cek == "Darurat" && status == "belum" && rasio_dana_darurat >= 3) {
@@ -99,7 +98,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 			agent.add('Kalau kamu belum punya Tahapan BCA, sekarang buka rekening gak harus ke kantor cabang lho. Kamu bisa langsung buka rekening lewat aplikasi BCA mobile.  Lihat info lengkapnya di sini https://bca.id/virabukatabungan')
 		}
 		
-		
+		agent.add(button_cek_up_dd);
 		
 		console.log(`dana tunai = ${dana_tunai}, pengeluaran = ${pengeluaran}, rasio dana darurat = ${rasio_dd_bulat}, status = ${status}, kriteria = ${kriteria_cek}` );
 	}	
@@ -134,7 +133,7 @@ Lihat info lengkapnya di sini https://bca.id/virabukarekening`)
 					}
 		};
 
-		let button_cek_up_cicilan = new Payload('LINE', buttoncekup_ci, { sendAsMessage : true });		
+		var button_cek_up_cicilan = new Payload('LINE', buttoncekup_ci, { sendAsMessage : true });		
 
 		if (kriteria_cek == "Cicilan" && rasio_utang < 0.3) { 
 		agent.add(`Nah, menurut VIRA kamu sudah cukup oke kok dalam mengatur porsi cicilan. Yeay!
@@ -184,7 +183,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 					}
 		};
 
-		let button_cek_up_investasi = new Payload('LINE', buttoncekup_iv, { sendAsMessage : true });		
+		var button_cek_up_investasi = new Payload('LINE', buttoncekup_iv, { sendAsMessage : true });		
 
 		if (kriteria_cek == "Investasi" && rasio_investasi < 0.1) { 
 		agent.add('Yuk, pelan-pelan mulai atur lagi dana investasi kamu yaa. Untuk investasi yang ideal minimal 10% dari jumlah pendapatan kamu. Dengan berinvestasi kita jadi belajar untuk mengatur keuangan yang lebih  baik di masa depan.')
