@@ -34,25 +34,20 @@ app.post('/', (req, res)=>{
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2);
 		
 		const buttoncekup_dd = {
-		"type": "template",
-		"altText": "Kriteria lainnya",
-		"template": {
+			"type": "template",
+			"altText": "Rasio tabungan",
+			"template": {
 			"type": "buttons",
-			"text": "Cek kondisi finansial lainnya",
+			"text": "Yuk kita cek investasi yang sesuai!",
 			"actions": [
-				{
-					"type": "message",
-					"label": "Cicilan",
-					"text": "Cicilan"
-				},
-				{
-					"type": "message",
-					"label": "Dana Investasi",
-					"text": "Dana Investasi"
-				}
-						]
-					}
-		}
+			  {
+				"type": "message",
+				"label": "Klik di sini",
+				"text": "Penjelasan mengenai investasi dong yon"
+			  }
+			]
+			}
+		  }
 
 		var button_cek_up_dd = new Payload('LINE', buttoncekup_dd, { sendAsMessage : true });
 		
