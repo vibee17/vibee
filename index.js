@@ -33,23 +33,30 @@ app.post('/', (req, res)=>{
 		const rasio_dana_darurat = dana_tunai / pengeluaran;
 		const rasio_dd_bulat = rasio_dana_darurat.toFixed(2);
 		
-		const buttoncekup_dd = {
-			"type": "template",
-			"altText": "Rasio tabungan",
-			"template": {
+		const lineMessage = {
+		"type": "template",
+		"altText": "Kriteria lainnya",
+		"template": {
 			"type": "buttons",
-			"text": "Yuk kita cek investasi yang sesuai!",
+			"text": "Cek kondisi finansial lainnya",
 			"actions": [
-			  {
-				"type": "message",
-				"label": "Klik di sini",
-				"text": "Penjelasan mengenai investasi dong yon"
-			  }
-			]
-			}
-		  }
+				{
+					"type": "message",
+					"label": "Cicilan",
+					"text": "Cicilan"
+				},
+				{
+					"type": "message",
+					"label": "Dana Investasi",
+					"text": "Dana Investasi"
+				}
+						]
+					}
+		}
 
-		var button_cek_up_dd = new Payload('LINE', buttoncekup_dd, { sendAsMessage : true });
+		var button_cek_up_dd = new Payload('LINE', lineMessage, {
+			sendAsMessage: true
+		})
 		
 		if (kriteria_cek == "Darurat" && status == "belum" && rasio_dana_darurat < 3) {
 			agent.add('Berdasarkan perhitungan VIRA, rasio dana darurat kamu adalah ' + rasio_dd_bulat + '. Buat yang berstatus single, rasio dana darurat yang ideal adalah 3 ke atas. Yuk bisa yuk!')
