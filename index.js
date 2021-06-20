@@ -361,7 +361,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				{
 					"type": "uri",
 					"label": "Tanya via telpon",
-					"uti": "www.typeform.com"
+					"uri": "www.typeform.com"
 				}
 						]
 					}
@@ -372,6 +372,56 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Dengan asumsi bunga Fix sebesar 8.5%, dan tenor selama 20 tahun dengan minimal uang muka 10% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpr_bulat_rp + '.');
 		agent.add('Vira yakin kamu pasti bisa. Yuk kamu mau Vira bantu apa lagi nih?');
 		agent.add(button_kpr_payload);
+	}
+
+		function hitung_cicilan_apart(agent) {
+		const harga_apart_1 = agent.parameters.harga_apartemen;
+		const dp = harga_apart_1 * 0.2;
+		const dp_bulat = Math.round(dp);
+		const dp_bulat_rp = dp_bulat.toLocaleString('de-DE');	
+			
+		const plafon_kpa = harga_rumah_1 * 0.8;
+		
+		const param_a = plafon_kpa * (0.085 / 12);
+		const param_b = 1 + (0.085 / 12);
+		const param_c = Math.pow(param_b, (-240));
+		const param_d = 1 - param_c;
+		const cicilan_kpa = param_a  / param_d;
+			
+		const cicilan_kpa_bulat = Math.round(cicilan_kpa);
+		const cicilan_kpa_bulat_rp = cicilan_kpa_bulat.toLocaleString('de-DE');	
+		
+		const button_kpa = {
+		"type": "template",
+		"altText": "Hunian tempat tinggal",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih salah satu",
+			"actions": [
+				{
+					"type": "uri",
+					"label": "Simulasi lagi",
+					"uri": "www.rumahsaya.bca.co.id"
+				},
+				{
+					"type": "message",
+					"label": "Info KPR/KPA",
+					"text": "KPR/KPA"
+				},
+				{
+					"type": "uri",
+					"label": "Tanya via telpon",
+					"uri": "www.typeform.com"
+				}
+						]
+					}
+		};
+		
+		var button_kpa_payload = new Payload('LINE', button_kpa, { sendAsMessage : true });	
+		
+		agent.add('Dengan asumsi bunga Fix sebesar 8.5%, dan tenor selama 20 tahun dengan minimal uang muka 20% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpa_bulat_rp + '.');
+		agent.add('Vira yakin kamu pasti bisa. Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add(button_kpa_payload);
 	}
 	
     var intentMap = new Map()
@@ -384,6 +434,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('dana.hari.tua.gen.q1', hitung_dana_tua)
 	intentMap.set('liburan.gen.budget.q1', hitung_budget_liburan)
 	intentMap.set('hunian.tpt.tinggal.gen.rmh.q1', hitung_cicilan_rumah)
+	intentMap.set('hunian.tpt.tinggal.gen.apart.q1', hitung_cicilan_apart)
     agent.handleRequest(intentMap)
 })
 
