@@ -350,7 +350,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"actions": [
 				{
 					"type": "uri",
-					"label": "Simulasi lagi",
+					"label": "Simulasi",
 					"uri": "www.rumahsaya.bca.co.id"
 				},
 				{
@@ -360,7 +360,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				},
 				{
 					"type": "uri",
-					"label": "Tanya via telpon",
+					"label": "Tanya Langsung",
 					"uri": "www.typeform.com"
 				}
 						]
@@ -400,7 +400,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"actions": [
 				{
 					"type": "uri",
-					"label": "Simulasi lagi",
+					"label": "Simulasi",
 					"uri": "www.rumahsaya.bca.co.id"
 				},
 				{
@@ -410,7 +410,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				},
 				{
 					"type": "uri",
-					"label": "Tanya via telpon",
+					"label": "Tanya Langsung",
 					"uri": "www.typeform.com"
 				}
 						]
