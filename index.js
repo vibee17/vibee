@@ -199,12 +199,59 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}, kriteria = ${kriteria_cek}`)
 	}
 
+	function hitung_dana_pendi(agent) {
+		const target_dana = agent.parameters.target-dana-pendi;
+		const tahun_pendi = agent.parameters.tahun-pendi;
+		const dana_sedia_pendi = agent.parameters.dana-sedia-pendi;
+		
+		const total_dana_pendi = target_dana * (Math.pow(1.21, tahun_pendi));
+		const total_dana_pendi_bulat = Math.round(total_dana_pendi);
+		const total_dana_pendi_bulat_rp = total_dana_pendi_bulat.toLocaleString('de-DE');
+		
+		const net_target_dana = total_dana_pendi - dana_sedia_pendi;
+		const param_a = 1 + (0.1/12);
+		const param_b = Math.pow(param_a, (tahun_pendi * 12));
+		const param_c = total_dana_pendi * (0.1/12);
+		const invest_pendi = param_c / ((param_b - 1) * param_a);
+		const invest_pendi_bulat = Math.round(invest_pendi);
+		const invest_pendi_bulat_rp = invest_pendi_bulat.toLocaleString('de-DE');
+		
+		const button_pendi = {
+		"type": "template",
+		"altText": "Metode pendidikan",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih yang ingin kamu ketahui",
+			"actions": [
+				{
+					"type": "message",
+					"label": "Investasi",
+					"text": "Investasi"
+				},
+				{
+					"type": "message",
+					"label": "Asuransi pendidikan",
+					"text": "Asuransi pendidikan"
+				}
+						]
+					}
+		};
+		
+		var button_pendi_payload = new Payload('LINE', button_pendi, { sendAsMessage : true });	
+		
+		agent.add('Untuk biaya pendidikan anak kamu, kamu butuh Rp ' + total_dana_pendi_bulat_rp +' atau kalau kamu taruh di instrumen investasi yang memberikan return 10%, kamu harus menyisihkan Rp ' + invest_pendi_bulat_rp + ' per bulan.');
+		agent.add('Ada 2 cara yang bisa bantu kamu capai impian sekolahin anak kamu. Kamu tertarik yang mana?')
+		agent.add(button_pendi_payload)
+		console.log(`invest_pendi_bulat_rp = ${invest_pendi_bulat_rp}, total_dana_pendi_bulat_rp = ${total_dana_pendi_bulat_rp}`)
+	}
+	
     var intentMap = new Map()
 
     intentMap.set('webhookDemo', demo)
 	intentMap.set('cek.up.gen.dana.darurat', cek_dana_darurat)
 	intentMap.set('cek.up.gen.cicilan', cek_cicilan)
 	intentMap.set('cek.up.gen.investasi', cek_investasi)
+	intentMap.set('dana.pendidikan.anak.gen.q1', hitung_dana_pendi)
     agent.handleRequest(intentMap)
 })
 
