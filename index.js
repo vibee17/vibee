@@ -195,7 +195,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Dalam investasi inget aja prinsip “High risk, high return” yaa! Nah buat kamu yang pengen tahu gambaran diri saat menghadapi risiko berinvestasi, cek dulu profil risiko kamu di sini https://bca.id/viraprofilrisiko')
 		}
 
-		agent.add(button_cek_up_investasi)	
+		agent.add(button_cek_up_investasi);	
 		console.log(`investasi = ${sisihan}, pendapatan = ${pendapatan}, rasio investasi = ${rasio_investasi_bulat}, status = ${status}, kriteria = ${kriteria_cek}`)
 	}
 
@@ -241,7 +241,57 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		agent.add('Untuk biaya pendidikan anak kamu, kamu butuh Rp '+ net_target_dana_pendi_bulat_rp +' atau kalau kamu taruh di instrumen investasi yang memberikan return 10%, kamu harus menyisihkan Rp ' + invest_pendi_bulat_rp + ' per bulan.');
 		agent.add('Ada 2 cara yang bisa bantu kamu capai impian sekolahin anak kamu. Kamu tertarik yang mana?')
-		agent.add(button_pendi_payload)
+		agent.add(button_pendi_payload);
+	}
+
+	function hitung_dana_tua(agent) {
+		const pengeluaran = agent.parameters.pengeluaran;
+		const lama_pensiun = agent.parameters.lama_pensiun;
+		
+		const total_dana_tua_tahunan = (pengeluaran * 12) * ((Math.pow(1.04, (lama_pensiun + 25))));
+		const net_total_dana_tua_tahunan = total_dana_tua_tahunan * 25;
+		const net_total_dana_tua_tahunan_bulat = Math.round(net_total_dana_tua_tahunan);
+		const net_total_dana_tua_tahunan_bulat_rp = net_total_dana_tua_tahunan_bulat.toLocaleString('de-DE');		
+		
+		const param_a = 1 + (0.1/12);
+		const param_b = Math.pow(param_a, (lama_pensiun * 12));
+		const param_c = net_total_dana_tua_tahunan * (0.1/12);
+		const invest_dana_tua = param_c / ((param_b - 1) * param_a);
+		const invest_dana_tua_bulat = Math.round(invest_dana_tua);
+		const invest_dana_tua_bulat_rp = invest_dana_tua_bulat.toLocaleString('de-DE');
+		
+		const button_dana_tua = {
+		"type": "template",
+		"altText": "Pengumpulan dana hari tua",
+		"template": {
+			"type": "buttons",
+			"text": "Yuk kita lihat investasi apa yang sesuai dengan kamu sekarang!",
+			"actions": [
+				{
+					"type": "message",
+					"label": "Selengkapnya",
+					"text": "Investasi"
+				}
+						]
+					}
+		};
+		
+		var button_dana_tua_payload = new Payload('LINE', button_dana_tua, { sendAsMessage : true });	
+		
+		agent.add('Dengan estimasi harapan hidup sekitar 25 tahun setelah pensiun dan inflasi rata-rata tahunan sebesar 4%, maka dana hari tua yang kamu butuhkan adalah Rp ' + net_total_dana_tua_tahunan_bulat_rp + '.');
+		agent.add('Jumlahnya cukup fantastis. Tapi tenang saja, kamu masih bisa mencapainya dengan rajin berinvestasi. Dengan estimasi return 10% saja, kamu perlu investasi sebesar Rp ' + invest_dana_tua_bulat_rp +'.');
+		
+		if (lama_pensiun < 3) {
+		agent.add('Untuk kamu yang akan pensiun sebentar lagi, kamu bisa melakukan investasi di instrumen dengan risiko rendah seperti deposito, obligasi dan reksadana pasar uang.')	
+		}
+		else if (lama_pensiun >= 3 && lama_pensiun < 6) {
+		agent.add('Kamu bisa melakukan investasi di instrumen dengan risiko moderat seperti reksadana pendapatan tetap dan reksadana campuran.');
+		}
+		else if (lama_pensiun > 5) {
+		agent.add('Berhubung masa pensiun kamu masih jauh, kamu bisa melakukan investasi di instrumen dengan risiko tinggi seperti reksadana campuran dan reksadana saham.');
+		}
+		
+		agent.add(button_dana_tua_payload);
 	}
 	
     var intentMap = new Map()
@@ -251,6 +301,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('cek.up.gen.cicilan', cek_cicilan)
 	intentMap.set('cek.up.gen.investasi', cek_investasi)
 	intentMap.set('dana.pendidikan.anak.gen.q1', hitung_dana_pendi)
+	intentMap.set('dana.hari.tua.gen.q1', hitung_dana_tua)
     agent.handleRequest(intentMap)
 })
 
