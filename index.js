@@ -248,7 +248,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		const pengeluaran = agent.parameters.pengeluaran;
 		const lama_pensiun = agent.parameters.lama_pensiun;
 		
-		const total_dana_tua_tahunan = (pengeluaran * 12) * ((Math.pow(1.04, (lama_pensiun + 25))));
+		const total_dana_tua_tahunan = (pengeluaran * 12) * ((Math.pow(1.04, (lama_pensiun))));
 		const net_total_dana_tua_tahunan = total_dana_tua_tahunan * 25;
 		const net_total_dana_tua_tahunan_bulat = Math.round(net_total_dana_tua_tahunan);
 		const net_total_dana_tua_tahunan_bulat_rp = net_total_dana_tua_tahunan_bulat.toLocaleString('de-DE');		
