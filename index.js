@@ -380,7 +380,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		const dp_bulat = Math.round(dp);
 		const dp_bulat_rp = dp_bulat.toLocaleString('de-DE');	
 			
-		const plafon_kpa = harga_rumah_1 * 0.8;
+		const plafon_kpa = harga_apart_1 * 0.8;
 		
 		const param_a = plafon_kpa * (0.085 / 12);
 		const param_b = 1 + (0.085 / 12);
