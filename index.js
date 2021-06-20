@@ -200,17 +200,17 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	}
 
 	function hitung_dana_pendi(agent) {
-		const target_dana = agent.parameters.target-dana-pendi;
-		const tahun_pendi = agent.parameters.tahun-pendi;
-		const dana_sedia_pendi = agent.parameters.dana-sedia-pendi;
+		const target_dana = agent.parameters.target_dana_pendi;
+		const tahun_pendi_1 = agent.parameters.tahun_pendi;
+		const dana_sedia_pendi_1 = agent.parameters.dana_sedia_pendi;
 		
-		const total_dana_pendi = target_dana * (Math.pow(1.21, tahun_pendi));
-		const net_target_dana = total_dana_pendi - dana_sedia_pendi;
+		const total_dana_pendi = target_dana * (Math.pow(1.21, tahun_pendi_1));
+		const net_target_dana = total_dana_pendi - dana_sedia_pendi_1;
 		const net_target_dana_pendi_bulat = Math.round(net_target_dana);
 		const net_target_dana_pendi_bulat_rp = net_target_dana_pendi_bulat.toLocaleString('de-DE');		
 		
 		const param_a = 1 + (0.1/12);
-		const param_b = Math.pow(param_a, (tahun_pendi * 12));
+		const param_b = Math.pow(param_a, (tahun_pendi_1 * 12));
 		const param_c = net_target_dana * (0.1/12);
 		const invest_pendi = param_c / ((param_b - 1) * param_a);
 		const invest_pendi_bulat = Math.round(invest_pendi);
@@ -239,10 +239,9 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		var button_pendi_payload = new Payload('LINE', button_pendi, { sendAsMessage : true });	
 		
-		agent.add('Untuk biaya pendidikan anak kamu, kamu butuh Rp ' + net_target_dana +' atau kalau kamu taruh di instrumen investasi yang memberikan return 10%, kamu harus menyisihkan Rp ' + invest_pendi_bulat_rp + ' per bulan.');
+		agent.add('Untuk biaya pendidikan anak kamu, kamu butuh Rp '+ net_target_dana_pendi_bulat_rp +' atau kalau kamu taruh di instrumen investasi yang memberikan return 10%, kamu harus menyisihkan Rp ' + invest_pendi_bulat_rp + ' per bulan.');
 		agent.add('Ada 2 cara yang bisa bantu kamu capai impian sekolahin anak kamu. Kamu tertarik yang mana?')
 		agent.add(button_pendi_payload)
-		console.log(`invest_pendi_bulat_rp = ${invest_pendi_bulat_rp}, total_dana_pendi_bulat_rp = ${net_target_dana_pendi_bulat_rp}`)
 	}
 	
     var intentMap = new Map()
