@@ -489,7 +489,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		const cicilan_kkb = param_a  / param_d;
 			
 		const cicilan_kkb_bulat = Math.round(cicilan_kkb);
-		const cicilan_kkb_bulat_rp = cicilan_ksm_bulat.toLocaleString('de-DE');	
+		const cicilan_kkb_bulat_rp = cicilan_kkb_bulat.toLocaleString('de-DE');	
 		
 		const button_kkb = {
 		"type": "template",
