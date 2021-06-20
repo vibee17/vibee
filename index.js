@@ -304,7 +304,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		const button_liburan = {
 		"type": "template",
-		"altText": "Metode pendidikan",
+		"altText": "Menghitung budget liburan",
 		"template": {
 			"type": "buttons",
 			"text": "Cari tahu mengenai Tahaka.",
@@ -323,6 +323,56 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Jadi setiap  bulan kamu harus menabung sekitar Rp ' + saving_bulanan_bulat_rp +'. Yuk VIRA bantuin kamu disiplin menabung supaya liburan kamu bisa terealisasi sesuai dnegan rencana kamu.');
 		agent.add(button_liburan_payload);
 	}
+
+		function hitung_cicilan_rumah(agent) {
+		const harga_rumah_1 = agent.parameters.harga_rumah;
+		const dp = harga_rumah_1 * 0.1;
+		const dp_bulat = Math.round(dp);
+		const dp_bulat_rp = dp_bulat.toLocaleString('de-DE');	
+			
+		const plafon_kpr = harga_rumah_1 * 0.9;
+		
+		const param_a = plafon_kpr * (0.085 / 12);
+		const param_b = 1 + (0.085 / 12);
+		const param_c = Math.pow(param_b, (-240));
+		const param_d = 1 - param_c;
+		const cicilan_kpr = param_a  / param_d;
+			
+		const cicilan_kpr_bulat = Math.round(cicilan_kpr);
+		const cicilan_kpr_bulat_rp = cicilan_kpr_bulat.toLocaleString('de-DE');	
+		
+		const button_kpr = {
+		"type": "template",
+		"altText": "Hunian tempat tinggal",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih salah satu",
+			"actions": [
+				{
+					"type": "uri",
+					"label": "Simulasi lagi",
+					"uri": "www.rumahsaya.bca.co.id"
+				},
+				{
+					"type": "message",
+					"label": "Info KPR",
+					"text": "KPR"
+				},
+				{
+					"type": "uri",
+					"label": "Tanya via telpon",
+					"uti": "www.typeform.com"
+				}
+						]
+					}
+		};
+		
+		var button_kpr_payload = new Payload('LINE', button_kpr, { sendAsMessage : true });	
+		
+		agent.add('Dengan asumsi bunga Fix sebesar 8.5%, dan tenor selama 20 tahun dengan minimal uang muka 10% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpr_bulat_rp + '.');
+		agent.add('Vira yakin kamu pasti bisa. Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add(button_kpr_payload);
+	}
 	
     var intentMap = new Map()
 
@@ -333,6 +383,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('dana.pendidikan.anak.gen.q1', hitung_dana_pendi)
 	intentMap.set('dana.hari.tua.gen.q1', hitung_dana_tua)
 	intentMap.set('liburan.gen.budget.q1', hitung_budget_liburan)
+	intentMap.set('hunian.tpt.tinggal.gen.rmh.q1', hitung_cicilan_rumah)
     agent.handleRequest(intentMap)
 })
 
