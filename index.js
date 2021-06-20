@@ -570,6 +570,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Dengan asumsi bunga sebesar 7% dan tenor selama 4 tahun, maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kkb_ref_bulat_rp + '.');
 		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
 		agent.add(button_kkb_ref_payload);
+		console.log(`nominal = ${nominal_pinjaman_1}, param_a = ${param_a}, param_d = ${param_d}, cicilan_kkb_ref = ${cicilan_kkb_ref}, cicilan_kkb_ref_bulat_rp = ${cicilan_kkb_ref_bulat_rp}`)
 	} 
 		else if (agunan_1 == "rumah"){
 
