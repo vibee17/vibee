@@ -294,6 +294,36 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add(button_dana_tua_payload);
 	}
 	
+		function hitung_budget_liburan(agent) {
+		const budget_1 = agent.parameters.budget;
+		const lama_bulan_1 = agent.parameters.lama_bulan;
+		const saving_bulanan = budget_1 / lama_bulan_1;
+		
+		const saving_bulanan_bulat = Math.round(saving_bulanan);
+		const saving_bulanan_bulat_rp = saving_bulanan_bulat.toLocaleString('de-DE');		
+		
+		const button_liburan = {
+		"type": "template",
+		"altText": "Metode pendidikan",
+		"template": {
+			"type": "buttons",
+			"text": "Cari tahu mengenai Tahaka.",
+			"actions": [
+				{
+					"type": "message",
+					"label": "Selengkapnya",
+					"text": "Tahaka"
+				}
+						]
+					}
+		};
+		
+		var button_liburan_payload = new Payload('LINE', button_liburan, { sendAsMessage : true });	
+		
+		agent.add('Jadi setiap  bulan kamu harus menabung sekitar Rp ' + saving_bulanan_bulat_rp +'. Yuk VIRA bantuin kamu disiplin menabung supaya liburan kamu bisa terealisasi sesuai dnegan rencana kamu.');
+		agent.add(button_liburan_payload);
+	}
+	
     var intentMap = new Map()
 
     intentMap.set('webhookDemo', demo)
@@ -302,6 +332,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('cek.up.gen.investasi', cek_investasi)
 	intentMap.set('dana.pendidikan.anak.gen.q1', hitung_dana_pendi)
 	intentMap.set('dana.hari.tua.gen.q1', hitung_dana_tua)
+	intentMap.set('liburan.gen.budget.q1', hitung_budget_liburan)
     agent.handleRequest(intentMap)
 })
 
