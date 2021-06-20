@@ -351,7 +351,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				{
 					"type": "uri",
 					"label": "Simulasi",
-					"uri": "www.rumahsaya.bca.co.id"
+					"uri": "https://rumahsaya.bca.co.id/"
 				},
 				{
 					"type": "message",
@@ -360,8 +360,8 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				},
 				{
 					"type": "uri",
-					"label": "Tanya Langsung",
-					"uri": "www.typeform.com"
+					"label": "Tanya langsung",
+					"uri": "https://www.typeform.com/"
 				}
 						]
 					}
@@ -421,7 +421,6 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		agent.add('Dengan asumsi bunga Fix sebesar 8.5%, dan tenor selama 20 tahun dengan minimal uang muka 20% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpa_bulat_rp + '.');
 		agent.add('Vira yakin kamu pasti bisa. Yuk kamu mau Vira bantu apa lagi nih?');
-		agent.add(button_kpa_payload);
 	}
 	
     var intentMap = new Map()
