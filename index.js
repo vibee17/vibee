@@ -443,7 +443,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		const button_ksm = {
 		"type": "template",
-		"altText": "Hunian tempat tinggal",
+		"altText": "Kendaraan idaman",
 		"template": {
 			"type": "buttons",
 			"text": "Pilih salah satu",
@@ -451,7 +451,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				{
 					"type": "uri",
 					"label": "Simulasi ulang",
-					"uri": "https://www.bca.co.id/en/Individu/produk/pinjaman/KSM/Simulasi-KSM"
+					"uri": "https://www.bca.co.id/id/Individu/produk/pinjaman/KSM/Simulasi-KSM"
 				},
 				{
 					"type": "message",
@@ -473,6 +473,56 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
 		agent.add(button_ksm_payload);
 	}
+
+		function hitung_cicilan_mobil(agent) {
+		const harga_mobil_1 = agent.parameters.harga_mobil;
+		const dp = harga_mobil_1 * 0.25;
+		const dp_bulat = Math.round(dp);
+		const dp_bulat_rp = dp_bulat.toLocaleString('de-DE');	
+			
+		const plafon_kkb = harga_mobil_1 * 0.75;
+		
+		const param_a = plafon_kkb * (0.0688 / 12);
+		const param_b = 1 + (0.0688 / 12);
+		const param_c = Math.pow(param_b, (-60));
+		const param_d = 1 - param_c;
+		const cicilan_kkb = param_a  / param_d;
+			
+		const cicilan_kkb_bulat = Math.round(cicilan_kkb);
+		const cicilan_kkb_bulat_rp = cicilan_ksm_bulat.toLocaleString('de-DE');	
+		
+		const button_kkb = {
+		"type": "template",
+		"altText": "Kendaraan idaman",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih salah satu",
+			"actions": [
+				{
+					"type": "uri",
+					"label": "Simulasi ulang",
+					"uri": "https://www.bca.co.id/id/Individu/produk/pinjaman/KKB/Simulasi-KKB"
+				},
+				{
+					"type": "message",
+					"label": "Info KKB",
+					"text": "KKB"
+				},
+				{
+					"type": "uri",
+					"label": "Tanya Langsung",
+					"uri": "https://www.typeform.com/"
+				}
+						]
+					}
+		};
+		
+		var button_kkb_payload = new Payload('LINE', button_kkb, { sendAsMessage : true });	
+		
+		agent.add('Dengan asumsi tenor selama 5 tahun dengan minimal uang muka 25% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kkb_bulat_rp + '.');
+		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add(button_kkb_payload);
+	}	
 	
     var intentMap = new Map()
 
@@ -486,6 +536,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('hunian.tpt.tinggal.gen.rmh.q1', hitung_cicilan_rumah)
 	intentMap.set('hunian.tpt.tinggal.gen.apart.q1', hitung_cicilan_apart)
 	intentMap.set('kendaraan.idaman.gen.mtr.q1', hitung_cicilan_motor)
+	intentMap.set('kendaraan.idaman.gen.mobil.q1', hitung_cicilan_mobil)
     agent.handleRequest(intentMap)
 })
 
