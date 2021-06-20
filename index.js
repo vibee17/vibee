@@ -523,6 +523,99 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
 		agent.add(button_kkb_payload);
 	}	
+
+		function hitung_cicilan_refinancing(agent) {
+		const nominal_pinjaman_1 = agent.parameters.nominal_pinjaman;
+		var agunan_1 = agent.parameters.agunan;
+		
+		if (agunan_1 == "mobil"){
+	
+		const param_a = nominal_pinjaman_1 * (0.07 / 12);
+		const param_b = 1 + (0.07 / 12);
+		const param_c = Math.pow(param_b, (-48));
+		const param_d = 1 - param_c;
+		const cicilan_kkb_ref = param_a  / param_d;
+			
+		const cicilan_kkb_ref_bulat = Math.round(cicilan_kkb_ref);
+		const cicilan_kkb_ref_bulat_rp = cicilan_kkb_ref_bulat.toLocaleString('de-DE');	
+		
+		const button_kkb_ref = {
+		"type": "template",
+		"altText": "Pinjaman personal",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih salah satu",
+			"actions": [
+				{
+					"type": "text",
+					"label": "Simulasi ulang",
+					"text": "Mobil"
+				},
+				{
+					"type": "message",
+					"label": "Info KKB Refinancing",
+					"text": "KKB Refinancing"
+				},
+				{
+					"type": "uri",
+					"label": "Tanya Langsung",
+					"uri": "https://www.typeform.com/"
+				}
+						]
+					}
+		};
+		
+		var button_kkb_ref_payload = new Payload('LINE', button_kkb_ref, { sendAsMessage : true });	
+		
+		agent.add('Dengan asumsi bunga sebesar 7% dan tenor selama 4 tahun, maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kkb_ref_bulat_rp + '.');
+		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add(button_kkb_ref_payload);
+	} 
+		else if (agunan_1 == "rumah"){
+
+		const param_a = nominal_pinjaman_1 * (0.095 / 12);
+		const param_b = 1 + (0.095 / 12);
+		const param_c = Math.pow(param_b, (-120));
+		const param_d = 1 - param_c;
+		const cicilan_kpr_ref = param_a  / param_d;
+			
+		const cicilan_kpr_ref_bulat = Math.round(cicilan_kpr_ref);
+		const cicilan_kpr_ref_bulat_rp = cicilan_kpr_ref_bulat.toLocaleString('de-DE');	
+		
+		const button_kpr_ref = {
+		"type": "template",
+		"altText": "Pinjaman personal",
+		"template": {
+			"type": "buttons",
+			"text": "Pilih salah satu",
+			"actions": [
+				{
+					"type": "text",
+					"label": "Simulasi ulang",
+					"text": "Rumah"
+				},
+				{
+					"type": "message",
+					"label": "Info KPR Refinancing",
+					"text": "KPR Refinancing"
+				},
+				{
+					"type": "uri",
+					"label": "Tanya Langsung",
+					"uri": "https://www.typeform.com/"
+				}
+						]
+					}
+		};
+		
+		var button_kpr_ref_payload = new Payload('LINE', button_kpr_ref, { sendAsMessage : true });	
+		
+		agent.add('Dengan asumsi bunga sebesar 9,5% dengan tenor selama 10 tahun, maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpr_ref_bulat_rp + '.');
+		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add(button_kpr_ref_payload);
+
+		}
+	}
 	
     var intentMap = new Map()
 
@@ -537,6 +630,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('hunian.tpt.tinggal.gen.apart.q1', hitung_cicilan_apart)
 	intentMap.set('kendaraan.idaman.gen.mtr.q1', hitung_cicilan_motor)
 	intentMap.set('kendaraan.idaman.gen.mobil.q1', hitung_cicilan_mobil)
+	intentMap.set('pinjaman.personal.gen.q1.agun', hitung_cicilan_refinancing)
     agent.handleRequest(intentMap)
 })
 
