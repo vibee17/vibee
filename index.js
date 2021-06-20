@@ -525,7 +525,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	}	
 
 		function hitung_cicilan_refinancing(agent) {
-		const nominal_pinjaman_1 = agent.parameters.nominal_pinjaman;
+		const nominal_pinjaman_1 = agent.context.get('session-vars').parameters['nominal_pinjaman'];
 		var agunan_1 = agent.parameters.agunan;
 		
 		if (agunan_1 == "mobil"){
