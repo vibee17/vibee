@@ -471,6 +471,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		agent.add('Dengan asumsi tenor selama 3 tahun dengan minimal uang muka 20% sebesar Rp ' + dp_bulat_rp + ', maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_ksm_bulat_rp + '.');
 		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		console.log(`plafon_ksm = ${plafon_ksm}, dp_bulat_rp = ${dp_bulat_rp}, cicilan_ksm_bulat_rp = ${cicilan_ksm_bulat_rp}`)
 		agent.add(button_ksm_payload);
 	}
 
