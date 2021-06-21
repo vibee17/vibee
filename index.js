@@ -548,7 +548,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"text": "Pilih salah satu",
 			"actions": [
 				{
-					"type": "text",
+					"type": "message",
 					"label": "Simulasi ulang",
 					"text": "Mobil"
 				},
@@ -592,7 +592,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"text": "Pilih salah satu",
 			"actions": [
 				{
-					"type": "text",
+					"type": "message",
 					"label": "Simulasi ulang",
 					"text": "Rumah"
 				},
