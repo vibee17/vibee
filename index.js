@@ -217,30 +217,42 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		const invest_pendi_bulat_rp = invest_pendi_bulat.toLocaleString('de-DE');
 		
 		const button_pendi = {
-		"type": "template",
-		"altText": "Metode pendidikan",
-		"template": {
-			"type": "buttons",
-			"text": "Pilih yang ingin kamu ketahui",
-			"actions": [
-				{
-					"type": "message",
-					"label": "Investasi",
-					"text": "Investasi"
-				},
-				{
-					"type": "message",
-					"label": "Asuransi pendidikan",
-					"text": "Asuransi pendidikan"
-				}
-						]
-					}
-		};
+    		"altText": "info edukasi",
+   		"type": "template",
+    		"template": {
+      		"imageSize": "cover",
+      		"type": "carousel",
+      		"columns": [
+        		{
+         		"actions": [
+           			{
+              				"label": "Selengkapnya",
+              				"type": "message",
+              				"text": "Solusi persiapan dana pendidikan"
+            			}
+          		],
+		  	"title": "Solusi persiapan dana pendidikan",
+          		"text": "Apa yang dapat dilakukan untuk mempersiapkan dana pendidikan anak"
+        		},
+        		{
+          		"title": "Menu Utama",
+          		"text": "Kembali ke menu utama Solusi Finansial",
+          		"actions": [
+            			{
+              				"text": "Solusi finansial",
+              				"label": "Kembali",
+              				"type": "message"
+            			}
+          		]
+        		}
+      		],
+      		"imageAspectRatio": "rectangle"
+		}
 		
 		var button_pendi_payload = new Payload('LINE', button_pendi, { sendAsMessage : true });	
 		
 		agent.add('Untuk biaya pendidikan anak kamu, kamu butuh Rp '+ net_target_dana_pendi_bulat_rp +' atau kalau kamu taruh di instrumen investasi yang memberikan return 10%, kamu harus menyisihkan Rp ' + invest_pendi_bulat_rp + ' per bulan.');
-		agent.add('Ada 2 cara yang bisa bantu kamu capai impian sekolahin anak kamu. Kamu tertarik yang mana?')
+		agent.add('Yuk kita mulai rencanakan sekarang untuk persiapan dana pendidikan anak kamu.');
 		agent.add(button_pendi_payload);
 	}
 
@@ -625,7 +637,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 	intentMap.set('cek.up.gen.dana.darurat', cek_dana_darurat)
 	intentMap.set('cek.up.gen.cicilan', cek_cicilan)
 	intentMap.set('cek.up.gen.investasi', cek_investasi)
-	intentMap.set('dana.pendidikan.anak.gen.q1', hitung_dana_pendi)
+	intentMap.set('dana.pendidikan.anak.gen.simulasi.q1', hitung_dana_pendi)
 	intentMap.set('dana.hari.tua.gen.q1', hitung_dana_tua)
 	intentMap.set('liburan.gen.budget.q1', hitung_budget_liburan)
 	intentMap.set('hunian.tpt.tinggal.gen.rmh.q1', hitung_cicilan_rumah)
