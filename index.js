@@ -204,7 +204,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		const tahun_pendi_1 = agent.parameters.tahun_pendi;
 		const dana_sedia_pendi_1 = agent.parameters.dana_sedia_pendi;
 		
-		const total_dana_pendi = target_dana * (Math.pow(1.21, tahun_pendi_1));
+		const total_dana_pendi = target_dana * (Math.pow(1.15, tahun_pendi_1));
 		const net_target_dana = total_dana_pendi - dana_sedia_pendi_1;
 		const net_target_dana_pendi_bulat = Math.round(net_target_dana);
 		const net_target_dana_pendi_bulat_rp = net_target_dana_pendi_bulat.toLocaleString('de-DE');		
@@ -247,6 +247,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
         		}
       		],
       		"imageAspectRatio": "rectangle"
+		}
 		}
 		
 		var button_pendi_payload = new Payload('LINE', button_pendi, { sendAsMessage : true });	
