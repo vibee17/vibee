@@ -232,7 +232,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
             			}
           		],
 		  	"title": "Solusi persiapan dana pendidikan",
-          		"text": "Apa yang dapat dilakukan untuk mempersiapkan dana pendidikan anak"
+          		"text": "Apa yang dapat dilakukan untuk mempersiapkan dana pendidikan"
         		},
         		{
           		"title": "Menu Utama",
