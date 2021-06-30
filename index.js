@@ -320,12 +320,17 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		"altText": "Menghitung budget liburan",
 		"template": {
 			"type": "buttons",
-			"text": "Cari tahu mengenai Tahaka.",
+			"text": "Mana yang ingin kamu ketahui?",
 			"actions": [
 				{
 					"type": "message",
-					"label": "Selengkapnya",
-					"text": "Tahaka"
+					"label": "Nabung di Tahaka",
+					"text": "Tahapan Berjangka"
+				},
+				{
+					"type": "message",
+					"label": "Deposito",
+					"text": "Deposito Berjangka"
 				}
 						]
 					}
@@ -333,7 +338,8 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		
 		var button_liburan_payload = new Payload('LINE', button_liburan, { sendAsMessage : true });	
 		
-		agent.add('Jadi setiap  bulan kamu harus menabung sekitar Rp ' + saving_bulanan_bulat_rp +'. Yuk VIRA bantuin kamu disiplin menabung supaya liburan kamu bisa terealisasi sesuai dnegan rencana kamu.');
+		agent.add('Jadi setiap  bulan kamu harus menabung sekitar Rp ' + saving_bulanan_bulat_rp +'. VIRA bisa bantuin kamu disiplin menabung supaya liburan kamu bisa terealisasi sesuai dengan rencana melalui Tahapan Berjangka (Tahaka). Dengan Tahaka, kamu bisa memilih untuk menabung sampai mendekati tanggal kamu liburan. Rekening kamu akan otomatis didebet ke rekening Tahaka ini sehingga kamu tidak perlu repot-repot transfer manual. Tahaka juga memiliki bunga yang lebih tinggi dari tabungan biasa dan kamu akan mendapatkan juga asuransi jiwa.');
+		agent.add('Namun, apabila ternyata kamu sudah menyediakan dananya, kamu juga bisa loh untuk mendepositokan dulu dana liburan kamu agar dananya aman dan tidak dapat digunakan sampai mendekati tanggal liburan kamu. Kamu bisa memilih periode deposito mulai dari 1 bulan hingga mendekati tanggal liburan kamu. Hitung-hitung dapat dana tambahan yang tentunya bisa dimanfaatkan selama liburan.');	
 		agent.add(button_liburan_payload);
 	}
 
