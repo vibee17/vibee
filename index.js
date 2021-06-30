@@ -521,12 +521,12 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 				{
 					"type": "uri",
 					"label": "Simulasi ulang",
-					"uri": "https://www.bca.co.id/id/Individu/produk/pinjaman/KKB/Simulasi-KKB"
+					"uri": "https://kreditkerenbanget.com/simulation"
 				},
 				{
 					"type": "message",
 					"label": "Info KKB",
-					"text": "KKB"
+					"text": "Kredit Kendaraan Bermotor"
 				},
 				{
 					"type": "uri",
@@ -567,9 +567,9 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"text": "Pilih salah satu",
 			"actions": [
 				{
-					"type": "message",
+					"type": "uri",
 					"label": "Simulasi ulang",
-					"text": "Mobil"
+					"uri": "https://kreditkerenbanget.com/simulation"
 				},
 				{
 					"type": "message",
@@ -588,7 +588,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		var button_kkb_ref_payload = new Payload('LINE', button_kkb_ref, { sendAsMessage : true });	
 		
 		agent.add('Dengan asumsi bunga sebesar 7% dan tenor selama 4 tahun, maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kkb_ref_bulat_rp + '.');
-		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add('Nah kamu ingin informasi apa lagi nih supaya Vira bisa bantu memenuhi kebutuhan kamu?');
 		agent.add(button_kkb_ref_payload);
 		console.log(`nominal = ${nominal_pinjaman_1}, param_a = ${param_a}, param_d = ${param_d}, cicilan_kkb_ref = ${cicilan_kkb_ref}, cicilan_kkb_ref_bulat_rp = ${cicilan_kkb_ref_bulat_rp}`)
 	} 
@@ -611,9 +611,9 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 			"text": "Pilih salah satu",
 			"actions": [
 				{
-					"type": "message",
+					"type": "uri",
 					"label": "Simulasi ulang",
-					"text": "Rumah"
+					"uri": "https://rumahsaya.bca.co.id/#/simulasi?tab=multiguna"
 				},
 				{
 					"type": "message",
@@ -632,7 +632,7 @@ Jangan lupa untuk mengontrol cicilanmu supaya tidak lebih dari 30% dari pendapat
 		var button_kpr_ref_payload = new Payload('LINE', button_kpr_ref, { sendAsMessage : true });	
 		
 		agent.add('Dengan asumsi bunga sebesar 9,5% dengan tenor selama 10 tahun, maka cicilan kamu per bulannya adalah sekitar Rp ' + cicilan_kpr_ref_bulat_rp + '.');
-		agent.add('Yuk kamu mau Vira bantu apa lagi nih?');
+		agent.add('Nah kamu ingin informasi apa lagi nih supaya Vira bisa bantu memenuhi kebutuhan kamu?');
 		agent.add(button_kpr_ref_payload);
 
 		}
